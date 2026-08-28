@@ -1,0 +1,8 @@
+*.log
+*.tar.gz
+*.tmp
+.env
+password.txt
+alerts.log
+hash1.txt
+hash2.txt
