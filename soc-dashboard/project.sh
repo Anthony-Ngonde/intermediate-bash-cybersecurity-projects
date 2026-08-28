@@ -34,6 +34,17 @@ tr -d '/tcp'
 }
 
 
+file_integrity_checker() {
+
+echo "======================"
+echo "File Integrity Changes"
+echo "======================"
+
+
+
+}
+
+
 while true
 do
 
