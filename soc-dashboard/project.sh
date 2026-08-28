@@ -12,11 +12,27 @@ echo "Failed SSH Logins"
 echo "================="
 
 sudo journalctl -u ssh |
-grep "Failed password"
+grep "Failed password" 
+
 
 
 }
 
-failed_ssh_logins
 
+new_listening_ports() {
+
+echo "==================="
+echo "New Listening Ports"
+echo "==================="
+
+nmap -p- localhost |
+grep "/tcp" |
+awk '{print $1}' |
+tr -d '/tcp'
+
+
+}
+
+#failed_ssh_logins
+new_listening_ports
 
