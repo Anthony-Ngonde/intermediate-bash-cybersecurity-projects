@@ -12,7 +12,7 @@ echo "Failed SSH Logins"
 echo "================="
 
 sudo journalctl -u ssh |
-grep "Failed password" 
+grep "Failed password"
 
 
 
@@ -33,6 +33,32 @@ tr -d '/tcp'
 
 }
 
-#failed_ssh_logins
-new_listening_ports
+
+echo
+echo "1.Failed SSH Logins"
+echo "2.New Listening Ports"
+echo "3.Exit"
+
+
+read -p "Enter your choice: " choice
+
+
+case $choice in
+
+1)
+ failed_ssh_logins
+ ;;
+
+2)
+ new_listening_ports
+ ;;
+
+3)
+ echo "Goodbye!"
+ exit
+
+esac
+
+
+
 
