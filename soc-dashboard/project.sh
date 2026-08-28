@@ -34,6 +34,10 @@ tr -d '/tcp'
 }
 
 
+while true
+do
+
+
 echo
 echo "1.Failed SSH Logins"
 echo "2.New Listening Ports"
@@ -59,6 +63,11 @@ case $choice in
 
 esac
 
+
+read -p "Press Enter to Continue..."
+
+
+done
 
 
 
