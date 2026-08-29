@@ -4,13 +4,16 @@ echo "==============================="
 echo "SOC Monitoring and Alert System"
 echo "==============================="
 
-
+current_date=$(date)
 base_hash=base_hash.txt
 current_hash=current_hash.txt
 base_scan=base_scan.txt
 current_scan=current_scan.txt
 new_port=new_port.txt
 closed_port=closed_port.txt
+security_log=security_log.txt
+disk_usage=disk_usage.txt
+
 
 
 failed_ssh_logins() {
@@ -22,6 +25,7 @@ echo "================="
 sudo journalctl -u ssh |
 grep "Failed password"
 
+echo "$current_date | Failed Login Attempts | HIGH" >> "$security_log"
 
 }
 
@@ -36,6 +40,7 @@ sudo journalctl -u ssh |
 grep "Failed password" |
 awk '{print $11}'
 
+echo "$current_date | Failed Login IP Attempts | HIGH" >> "$security_log"
 
 }
 
@@ -118,6 +123,7 @@ if cmp -s "$base_hash" "$current_hash"
     echo "The file is Unchanged"
    else
     echo "The file is Modified"
+    echo "$current_date | File Change Detected | LOW" >> "$security_log"
 
 fi
 
@@ -132,7 +138,29 @@ echo "Disk Usage Checker"
 echo "=================="
 
 df -h / |
-awk 'NR==2 {print $5}'
+awk 'NR==2 {print $5}' |
+tr -d '%' > "$disk_usage"
+
+cat "$disk_usage"
+
+
+if [ "$disk_usage" -ge 90  ]
+  then
+    echo "$current_date | Disk Usage | CRITICAL" >> "$security_log"
+
+elif [ "$disk_usage" -ge 70  ]
+   then
+    echo "$current_date | Disk Usage | HIGH" >> "$security_log"
+
+elif [ "$disk_usage" -ge 40  ]
+   then
+    echo "$current_date | Disk Usage | MEDIUM" >> "$security_log"
+
+   else
+   echo "$current_date | Disk Usage | LOW" >> "$security_log"
+
+
+fi
 
 }
 
