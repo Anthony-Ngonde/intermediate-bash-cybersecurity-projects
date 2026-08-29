@@ -208,6 +208,32 @@ fi
 }
 
 
+delete_log_input() {
+
+echo "=============================="
+echo "Delete Security Log File Input"
+echo "=============================="
+
+cat "$security_log"
+
+read -p "Enter process: " process
+
+
+if grep -iq "$process" "$security_log"
+  then
+   sed -i "/$process/Id" "$security_log"
+   echo "Security Log Input deleted successfully"
+
+   else
+   echo "Security Log Input not found"
+
+fi
+
+
+}
+
+
+
 while true
 do
 
@@ -221,7 +247,8 @@ echo "5.Disk Usage"
 echo "6.Display Suspicious Processes"
 echo "7.Display Network Connections"
 echo "8.View Security Log File"
-echo "9.Exit"
+echo "9.Delete Security Log File Input"
+echo "10.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -262,6 +289,10 @@ case $choice in
  ;;
 
 9)
+ delete_log_input
+ ;;
+
+10)
  echo "Goodbye!"
  exit
 
