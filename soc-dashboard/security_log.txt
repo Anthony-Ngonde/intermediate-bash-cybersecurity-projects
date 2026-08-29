@@ -1,1 +1,4 @@
 Sat Aug 29 05:32:27 AM EDT 2026 | Disk Usage | LOW
+Sat Aug 29 06:11:33 AM EDT 2026 | Failed Login Attempts | HIGH
+Sat Aug 29 06:11:33 AM EDT 2026 | Failed Login IP Attempts | HIGH
+Sat Aug 29 06:11:33 AM EDT 2026 | Disk Usage | LOW

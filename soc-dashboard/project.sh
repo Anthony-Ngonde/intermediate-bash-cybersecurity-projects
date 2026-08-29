@@ -233,6 +233,61 @@ fi
 }
 
 
+count_security_alerts() {
+
+echo "====================="
+echo "Count Security Alerts"
+echo "====================="
+
+total=0
+low=0
+medium=0
+high=0
+critical=0
+
+while IFS='|' read -r date process severity
+do
+
+severity=$(echo "$severity" | xargs)
+
+total=$((total + 1))
+
+case $severity in
+
+LOW)
+  low=$((low + 1))
+  ;;
+
+MEDIUM)
+  medium=$((medium + 1))
+  ;;
+
+HIGH)
+  high=$((high + 1))
+  ;;
+
+CRITICAL)
+  critical=$((critical + 1))
+  ;;
+
+esac
+
+
+done < "$security_log"
+
+echo
+echo "Total Severity Alerts: $total"
+echo "Low Alerts: $low"
+echo "Medium Alerts: $medium"
+echo "High Alerts: $high"
+echo "Critical Alerts: $critical"
+
+
+}
+
+
+
+
 
 while true
 do
@@ -248,7 +303,8 @@ echo "6.Display Suspicious Processes"
 echo "7.Display Network Connections"
 echo "8.View Security Log File"
 echo "9.Delete Security Log File Input"
-echo "10.Exit"
+echo "10.Count Security Alerts"
+echo "11.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -293,6 +349,10 @@ case $choice in
  ;;
 
 10)
+ count_security_alerts
+ ;;
+
+11)
  echo "Goodbye!"
  exit
 
