@@ -5,6 +5,10 @@ echo "SOC Monitoring and Alert System"
 echo "==============================="
 
 
+base_hash=base_hash.txt
+current_hash=current_hash.txt
+
+
 failed_ssh_logins() {
 
 echo "================="
@@ -41,6 +45,28 @@ echo "File Integrity Changes"
 echo "======================"
 
 
+if [ ! -f "$base_hash"  ]
+  then
+   read -p "Enter filename: " file
+
+   sha256sum "$file" > "$base_hash"
+   return
+
+fi
+
+
+read -p "Enter filename: " file
+
+sha256sum "$file" > "$current_hash"
+
+if cmp -s "$base_hash" "$current_hash"
+   then
+    echo "The file is Unchanged"
+   else
+    echo "The file is Modified"
+
+fi
+
 
 }
 
@@ -52,7 +78,8 @@ do
 echo
 echo "1.Failed SSH Logins"
 echo "2.New Listening Ports"
-echo "3.Exit"
+echo "3.File Integrity Changes"
+echo "4.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -69,6 +96,10 @@ case $choice in
  ;;
 
 3)
+ file_integrity_checker
+ ;;
+
+4)
  echo "Goodbye!"
  exit
 
