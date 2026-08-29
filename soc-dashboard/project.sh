@@ -23,6 +23,19 @@ sudo journalctl -u ssh |
 grep "Failed password"
 
 
+}
+
+
+failed_ssh_logins_ip() {
+
+echo "================================="
+echo "Failed Login Attempt from same IP"
+echo "================================="
+
+sudo journalctl -u ssh |
+grep "Failed password" |
+awk '{print $11}'
+
 
 }
 
@@ -121,8 +134,8 @@ echo "=================="
 df -h / |
 awk 'NR==2 {print $5}'
 
-
 }
+
 
 display_sus_processes() {
 
@@ -144,6 +157,7 @@ do
 
 echo
 echo "1.Failed SSH Logins"
+echo "2.Failed Login Attempts from same IP"
 echo "2.New Listening Ports"
 echo "3.File Integrity Changes"
 echo "4.Disk Usage"
@@ -161,22 +175,26 @@ case $choice in
  ;;
 
 2)
- new_listening_ports
+ failed_ssh_logins_ip
  ;;
 
 3)
- file_integrity_checker
+ new_listening_ports
  ;;
 
 4)
- disk_usage_checker
+ file_integrity_checker
  ;;
 
 5)
- display_sus_processes
+ disk_usage_checker
  ;;
 
 6)
+ display_sus_processes
+ ;;
+
+7)
  echo "Goodbye!"
  exit
 
