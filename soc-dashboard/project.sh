@@ -71,6 +71,19 @@ fi
 }
 
 
+disk_usage_checker() {
+
+echo "=================="
+echo "Disk Usage Checker"
+echo "=================="
+
+df -h / |
+awk 'NR==2 {print $5}'
+
+
+}
+
+
 while true
 do
 
@@ -79,7 +92,8 @@ echo
 echo "1.Failed SSH Logins"
 echo "2.New Listening Ports"
 echo "3.File Integrity Changes"
-echo "4.Exit"
+echo "4.Disk Usage"
+echo "5.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -100,6 +114,10 @@ case $choice in
  ;;
 
 4)
+ disk_usage_checker
+ ;;
+
+5)
  echo "Goodbye!"
  exit
 
