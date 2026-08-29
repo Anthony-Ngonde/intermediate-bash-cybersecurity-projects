@@ -83,6 +83,19 @@ awk 'NR==2 {print $5}'
 
 }
 
+display_sus_processes() {
+
+echo "============================"
+echo "Display Suspicious Processes"
+echo "============================"
+
+read -p "Enter Process Name: " process
+
+ps aux | grep "$process"
+
+
+}
+
 
 while true
 do
@@ -93,7 +106,8 @@ echo "1.Failed SSH Logins"
 echo "2.New Listening Ports"
 echo "3.File Integrity Changes"
 echo "4.Disk Usage"
-echo "5.Exit"
+echo "5.Display Suspicious Processes"
+echo "6.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -118,6 +132,10 @@ case $choice in
  ;;
 
 5)
+ display_sus_processes
+ ;;
+
+6)
  echo "Goodbye!"
  exit
 
