@@ -190,6 +190,24 @@ ss -tunap
 }
 
 
+view_log_file() {
+
+echo "======================"
+echo "View Security Log File"
+echo "======================"
+
+if [ -s "$security_log"  ]
+  then
+   cat "$security_log"
+  else
+   echo "Security Log file not found"
+
+fi
+
+
+}
+
+
 while true
 do
 
@@ -202,7 +220,8 @@ echo "4.File Integrity Changes"
 echo "5.Disk Usage"
 echo "6.Display Suspicious Processes"
 echo "7.Display Network Connections"
-echo "8.Exit"
+echo "8.View Security Log File"
+echo "9.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -239,6 +258,10 @@ case $choice in
  ;;
 
 8)
+ view_log_file
+ ;;
+
+9)
  echo "Goodbye!"
  exit
 
