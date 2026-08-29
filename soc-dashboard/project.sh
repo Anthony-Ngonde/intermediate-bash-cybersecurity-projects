@@ -151,6 +151,17 @@ ps aux | grep "$process"
 }
 
 
+display_network_connections() {
+
+echo "==========================="
+echo "Display Network Connections"
+echo "==========================="
+
+ss -tunap
+
+}
+
+
 while true
 do
 
@@ -158,11 +169,12 @@ do
 echo
 echo "1.Failed SSH Logins"
 echo "2.Failed Login Attempts from same IP"
-echo "2.New Listening Ports"
-echo "3.File Integrity Changes"
-echo "4.Disk Usage"
-echo "5.Display Suspicious Processes"
-echo "6.Exit"
+echo "3.New Listening Ports"
+echo "4.File Integrity Changes"
+echo "5.Disk Usage"
+echo "6.Display Suspicious Processes"
+echo "7.Display Network Connections"
+echo "8.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -195,6 +207,10 @@ case $choice in
  ;;
 
 7)
+ display_network_connections
+ ;;
+
+8)
  echo "Goodbye!"
  exit
 
