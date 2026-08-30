@@ -106,6 +106,14 @@ if cmp -s "$base_scan" "$current_scan"
 
 fi
 
+new_port=$(comm -13 "$base_scan" "$current_scan")
+
+if [ -n "$new_port"  ]
+  then
+   echo "$current_date | Newly Opened ports: $new_port | HIGH" >> "$security_log"
+
+fi
+
 }
 
 
