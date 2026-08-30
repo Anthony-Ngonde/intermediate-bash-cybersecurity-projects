@@ -401,8 +401,20 @@ echo "====================================="
 
 read -p "Enter Intervals in seconds: " interval
 
+if ! [[ "$interval" =~ ^[0-9]+$ ]] || [ "$interval" -le 0  ]
+   then
+     echo "Invalid monitoring interval"
+   return
+
+fi
+
+
 while true
 do
+
+echo
+echo "Security scan started: $current_date"
+
 
 run_security_checks
 
