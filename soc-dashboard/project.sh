@@ -339,6 +339,35 @@ echo
 }
 
 
+continuous_security_checks() {
+
+echo "====================================="
+echo "Continuous Monitoring Security Checks"
+echo "====================================="
+
+
+read -p "Enter Intervals in seconds: " interval
+
+
+while true
+do
+
+
+run_security_checks
+
+echo
+echo "Next security check in $interval seconds"
+echo "Press Ctrl + C to exit"
+
+sleep "$interval"
+
+
+
+done
+
+
+}
+
 
 generate_security_report() {
 
@@ -438,9 +467,10 @@ echo "8.View Security Log File"
 echo "9.Delete Security Log File Input"
 echo "10.Count Security Alerts"
 echo "11.Run All Security Checks"
-echo "12.Generate Security Report"
-echo "13.View Security Report"
-echo "14.Exit"
+echo "12.Continuous Security Monitoring Checks"
+echo "13.Generate Security Report"
+echo "14.View Security Report"
+echo "15.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -493,21 +523,28 @@ case $choice in
  ;;
 
 12)
- generate_security_report
+ continuous_security_checks
  ;;
 
 13)
- view_security_report
+ generate_security_report
  ;;
 
 14)
+ view_security_report
+ ;;
+
+15)
  echo "Goodbye!"
  exit
+
 
 esac
 
 
+
 read -p "Press Enter to Continue..."
+
 
 
 done
