@@ -39,7 +39,11 @@ echo "================================="
 
 sudo journalctl -u ssh |
 grep "Failed password" |
-awk '{print $11}'
+awk '{print $11}' |
+sort |
+uniq -c |
+sort -nr
+
 
 echo "$current_date | Failed Login IP Attempts | HIGH" >> "$security_log"
 
@@ -72,7 +76,6 @@ grep "/tcp" |
 awk '{print $1}' |
 tr -d '/tcp' > "$current_scan"
 
-
 if cmp -s "$base_scan" "$current_scan"
   then
     echo
@@ -81,6 +84,7 @@ if cmp -s "$base_scan" "$current_scan"
     echo
     echo "Port Changes Detected"
     cat "$current_scan"
+
     comm -13 "$base_scan" "$current_scan" > "$new_port"
     echo
     echo "Newly Opened Ports: "
@@ -194,6 +198,7 @@ ps aux | grep "$process"
 }
 
 
+
 display_network_connections() {
 
 echo "==========================="
@@ -249,6 +254,7 @@ fi
 }
 
 
+
 count_security_alerts() {
 
 echo "====================="
@@ -288,7 +294,6 @@ CRITICAL)
 
 esac
 
-
 done < "$security_log"
 
 echo
@@ -298,8 +303,8 @@ echo "Medium Alerts: $medium"
 echo "High Alerts: $high"
 echo "Critical Alerts: $critical"
 
-
 }
+
 
 
 run_security_checks() {
@@ -348,10 +353,8 @@ echo "====================================="
 
 read -p "Enter Intervals in seconds: " interval
 
-
 while true
 do
-
 
 run_security_checks
 
@@ -361,10 +364,7 @@ echo "Press Ctrl + C to exit"
 
 sleep "$interval"
 
-
-
 done
-
 
 }
 
@@ -384,10 +384,10 @@ echo "SECURITY ALERTS"
 echo "==============="
 
 if [ -s "$security_log"  ]
-  then
+   then
     cat "$security_log"
-  else
-    echo "No security log alert recorded"
+   else
+    echo "Security log file not found"
 
 fi
 
