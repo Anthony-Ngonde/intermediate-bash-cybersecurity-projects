@@ -1,0 +1,48 @@
+=============================
+SOC DASHBOARD SECURITY REPORT
+=============================
+Generated: Sun Aug 30 02:45:07 AM EDT 2026
+
+===============
+SECURITY ALERTS
+===============
+Sat Aug 29 05:32:27 AM EDT 2026 | Disk Usage | LOW
+Sat Aug 29 06:11:33 AM EDT 2026 | Failed Login Attempts | HIGH
+Sat Aug 29 06:11:33 AM EDT 2026 | Failed Login IP Attempts | HIGH
+Sat Aug 29 06:11:33 AM EDT 2026 | Disk Usage | LOW
+
+============
+ALERT COUNTS
+============
+LOW: 2
+MEDIUM: 0
+HIGH: 2
+CRITICAL: 0
+
+=======================
+CURRENT LISTENING PORTS
+=======================
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-08-30 02:45 EDT
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.0000030s latency).
+Other addresses for localhost (not scanned): ::1
+Not shown: 65533 closed tcp ports (reset)
+PORT    STATE SERVICE
+22/tcp  open  ssh
+443/tcp open  https
+
+Nmap done: 1 IP address (1 host up) scanned in 0.57 seconds
+
+==================
+CURRENT DISK USAGE
+==================
+41%
+
+===========================
+DISPLAY NETWORK CONNECTIONS
+===========================
+Netid State  Recv-Q Send-Q  Local Address:Port Peer Address:PortProcess                            
+udp   ESTAB  0      0      10.0.2.15%eth0:68       10.0.2.2:67                                     
+tcp   LISTEN 0      128           0.0.0.0:22        0.0.0.0:*                                      
+tcp   LISTEN 0      5             0.0.0.0:443       0.0.0.0:*    users:(("python3",pid=31696,fd=3))
+tcp   LISTEN 0      128              [::]:22           [::]:*                                      

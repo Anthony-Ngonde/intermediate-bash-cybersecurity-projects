@@ -13,6 +13,7 @@ new_port=new_port.txt
 closed_port=closed_port.txt
 security_log=security_log.txt
 disk_usage=disk_usage.txt
+security_report=security_report.txt
 
 
 
@@ -208,6 +209,7 @@ fi
 }
 
 
+
 delete_log_input() {
 
 echo "=============================="
@@ -287,6 +289,73 @@ echo "Critical Alerts: $critical"
 
 
 
+generate_security_report() {
+
+{
+
+echo "============================="
+echo "SOC DASHBOARD SECURITY REPORT"
+echo "============================="
+echo "Generated: $current_date"
+echo
+
+echo "==============="
+echo "SECURITY ALERTS"
+echo "==============="
+
+if [ -s "$security_log"  ]
+  then
+    cat "$security_log"
+  else
+    echo "No security log alert recorded"
+
+fi
+
+
+echo
+echo "============"
+echo "ALERT COUNTS"
+echo "============"
+
+echo "LOW: $(grep -c '| LOW' "$security_log")"
+echo "MEDIUM: $(grep -c '| MEDIUM' "$security_log")"
+echo "HIGH: $(grep -c '| HIGH' "$security_log")"
+echo "CRITICAL: $(grep -c '| CRITICAL' "$security_log")"
+
+
+echo
+echo "======================="
+echo "CURRENT LISTENING PORTS"
+echo "======================="
+
+nmap -p- localhost
+
+
+echo
+echo "=================="
+echo "CURRENT DISK USAGE"
+echo "=================="
+
+df -h / |
+awk 'NR==2 {print $5}'
+
+
+echo
+echo "==========================="
+echo "DISPLAY NETWORK CONNECTIONS"
+echo "==========================="
+
+ss -tunap
+
+
+} > "$security_report"
+
+echo
+echo "Report Generated successfully in $security_report"
+
+}
+
+
 
 
 while true
@@ -304,7 +373,8 @@ echo "7.Display Network Connections"
 echo "8.View Security Log File"
 echo "9.Delete Security Log File Input"
 echo "10.Count Security Alerts"
-echo "11.Exit"
+echo "11.Generate Security Report"
+echo "12.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -353,6 +423,10 @@ case $choice in
  ;;
 
 11)
+ generate_security_report
+ ;;
+
+12)
  echo "Goodbye!"
  exit
 
