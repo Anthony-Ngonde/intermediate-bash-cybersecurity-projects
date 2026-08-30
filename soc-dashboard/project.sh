@@ -12,7 +12,7 @@ current_scan=current_scan.txt
 new_port=new_port.txt
 closed_port=closed_port.txt
 security_log=security_log.txt
-disk_usage=disk_usage.txt
+disk_usage=$(cat disk_usage.txt)
 security_report=security_report.txt
 
 
@@ -100,9 +100,17 @@ fi
 
 file_integrity_checker() {
 
+file="$1"
+
 echo "======================"
 echo "File Integrity Changes"
 echo "======================"
+
+if [ -z "$file"  ]
+  then
+   read -p "Enter filename: " file
+
+fi
 
 
 if [ ! -f "$base_hash"  ]
@@ -115,7 +123,7 @@ if [ ! -f "$base_hash"  ]
 fi
 
 
-read -p "Enter filename: " file
+#read -p "Enter filename: " file
 
 sha256sum "$file" > "$current_hash"
 
@@ -144,7 +152,6 @@ tr -d '%' > "$disk_usage"
 
 cat "$disk_usage"
 
-
 if [ "$disk_usage" -ge 90  ]
   then
     echo "$current_date | Disk Usage | CRITICAL" >> "$security_log"
@@ -160,7 +167,6 @@ elif [ "$disk_usage" -ge 40  ]
    else
    echo "$current_date | Disk Usage | LOW" >> "$security_log"
 
-
 fi
 
 }
@@ -168,11 +174,19 @@ fi
 
 display_sus_processes() {
 
+process="$1"
+
 echo "============================"
 echo "Display Suspicious Processes"
 echo "============================"
 
-read -p "Enter Process Name: " process
+if [ -z "$process"  ]
+  then
+   read -p "Enter Process Name: " process
+
+fi
+
+#read -p "Enter Process Name: " process
 
 ps aux | grep "$process"
 
@@ -288,6 +302,43 @@ echo "Critical Alerts: $critical"
 }
 
 
+run_security_checks() {
+
+echo "======================="
+echo "Run All Security Checks"
+echo "======================="
+
+echo
+failed_ssh_logins
+echo
+
+echo
+failed_ssh_logins_ip
+echo
+
+echo
+new_listening_ports
+echo
+
+echo
+file_integrity_checker "dummy.txt"
+echo
+
+echo
+disk_usage_checker
+echo
+
+echo
+display_sus_processes "sleep"
+echo
+
+echo
+display_network_connections
+echo
+
+}
+
+
 
 generate_security_report() {
 
@@ -386,9 +437,10 @@ echo "7.Display Network Connections"
 echo "8.View Security Log File"
 echo "9.Delete Security Log File Input"
 echo "10.Count Security Alerts"
-echo "11.Generate Security Report"
-echo "12.View Security Report"
-echo "13.Exit"
+echo "11.Run All Security Checks"
+echo "12.Generate Security Report"
+echo "13.View Security Report"
+echo "14.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -409,7 +461,7 @@ case $choice in
  ;;
 
 4)
- file_integrity_checker
+ file_integrity_checker "dummy.txt"
  ;;
 
 5)
@@ -417,7 +469,7 @@ case $choice in
  ;;
 
 6)
- display_sus_processes
+ display_sus_processes "sleep"
  ;;
 
 7)
@@ -437,14 +489,18 @@ case $choice in
  ;;
 
 11)
- generate_security_report
+ run_security_checks
  ;;
 
 12)
- view_security_report
+ generate_security_report
  ;;
 
 13)
+ view_security_report
+ ;;
+
+14)
  echo "Goodbye!"
  exit
 
