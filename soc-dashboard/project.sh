@@ -468,7 +468,7 @@ echo "======================="
 echo "CURRENT LISTENING PORTS"
 echo "======================="
 
-nmap -p- localhost
+ss -tuln
 
 
 echo
