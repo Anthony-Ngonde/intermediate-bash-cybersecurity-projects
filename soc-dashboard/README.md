@@ -1,4 +1,4 @@
-/# SOC Monitoring & Alert System
+# SOC Monitoring & Alert System
 
 ## Features
 
