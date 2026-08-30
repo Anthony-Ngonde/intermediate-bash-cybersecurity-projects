@@ -18,4 +18,4 @@
 git clone https://github.com/Anthony-Ngonde/intermediate-bash-cybersecurity-projects.git,
 cd intermediate-bash-cybersecurity-projects/soc-dashboard,
 chmod +x project.sh,
-./project.sh,
+./project.sh
