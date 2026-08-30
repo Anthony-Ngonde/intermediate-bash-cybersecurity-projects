@@ -23,10 +23,17 @@ echo "================="
 echo "Failed SSH Logins"
 echo "================="
 
-sudo journalctl -u ssh |
-grep "Failed password"
+failed_count=$(sudo journalctl -u ssh | grep -c "Failed password")
 
-echo "$current_date | Failed Login Attempts | HIGH" >> "$security_log"
+if [ "$failed_count" -gt 0  ]
+  then
+    echo "Failed SSH logins: $failed_count"
+    echo "$current_date | Failed Login Attempts: $failed_count | HIGH" >> "$security_log"
+
+  else
+    echo "No failed SSH logins detected"
+
+fi
 
 }
 
