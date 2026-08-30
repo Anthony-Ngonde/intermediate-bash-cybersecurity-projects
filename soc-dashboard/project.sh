@@ -193,12 +193,24 @@ fi
 ram_usage_checker() {
 
 echo "================="
-echo "RAM USAGE CHECKER"
+echo "RAM Usage Checker"
 echo "================="
 
 free -h |
 awk 'NR==2 {print $3}'
 
+
+}
+
+
+cpu_usage_checker() {
+
+echo "================="
+echo "CPU Usage Checker"
+echo "================="
+
+top -bn1 |
+awk '/Cpu/ {print 100-$8}'
 
 }
 
@@ -365,6 +377,10 @@ ram_usage_checker
 echo
 
 echo
+cpu_usage_checker
+echo
+
+echo
 display_sus_processes "sleep"
 echo
 
@@ -494,16 +510,17 @@ echo "3.New Listening Ports"
 echo "4.File Integrity Changes"
 echo "5.Disk Usage"
 echo "6.RAM Usage"
-echo "7.Display Suspicious Processes"
-echo "8.Display Network Connections"
-echo "9.View Security Log File"
-echo "10.Delete Security Log File Input"
-echo "11.Count Security Alerts"
-echo "12.Run All Security Checks"
-echo "13.Continuous Security Monitoring Checks"
-echo "14.Generate Security Report"
-echo "15.View Security Report"
-echo "16.Exit"
+echo "7.CPU Usage"
+echo "8.Display Suspicious Processes"
+echo "9.Display Network Connections"
+echo "10.View Security Log File"
+echo "11.Delete Security Log File Input"
+echo "12.Count Security Alerts"
+echo "13.Run All Security Checks"
+echo "14.Continuous Security Monitoring Checks"
+echo "15.Generate Security Report"
+echo "16.View Security Report"
+echo "17.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -536,42 +553,46 @@ case $choice in
  ;;
 
 7)
- display_sus_processes "sleep"
+ cpu_usage_checker
  ;;
 
 8)
- display_network_connections
+ display_sus_processes "sleep"
  ;;
 
 9)
- view_log_file
+ display_network_connections
  ;;
 
 10)
- delete_log_input
+ view_log_file
  ;;
 
 11)
- count_security_alerts
+ delete_log_input
  ;;
 
 12)
- run_security_checks
+ count_security_alerts
  ;;
 
 13)
- continuous_security_checks
+ run_security_checks
  ;;
 
 14)
- generate_security_report
+ continuous_security_checks
  ;;
 
 15)
- view_security_report
+ generate_security_report
  ;;
 
 16)
+ view_security_report
+ ;;
+
+17)
  echo "Goodbye!"
  exit
 
