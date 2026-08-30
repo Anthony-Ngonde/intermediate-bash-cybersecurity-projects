@@ -356,6 +356,19 @@ echo "Report Generated successfully in $security_report"
 }
 
 
+view_security_report() {
+
+if [ -s "$security_report"  ]
+  then
+    cat "$security_report"
+  else
+    echo "Security report not found"
+
+fi
+
+}
+
+
 
 
 while true
@@ -374,7 +387,8 @@ echo "8.View Security Log File"
 echo "9.Delete Security Log File Input"
 echo "10.Count Security Alerts"
 echo "11.Generate Security Report"
-echo "12.Exit"
+echo "12.View Security Report"
+echo "13.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -427,6 +441,10 @@ case $choice in
  ;;
 
 12)
+ view_security_report
+ ;;
+
+13)
  echo "Goodbye!"
  exit
 
