@@ -35,7 +35,39 @@ cat /etc/os-release
 
 }
 
-user_root_status
 
-operating_system_info
+while true
+do
 
+
+echo
+echo "1.Current/Root User Status"
+echo "2.Operating System Information"
+echo "3.Exit"
+
+
+read -p "Enter your choice: " choice
+
+
+case $choice in
+
+
+1)
+ user_root_status
+ ;;
+
+2)
+ operating_system_info
+ ;;
+
+3)
+ echo "Goodbye!"
+ exit
+
+esac
+
+
+read -p "Press Enter to Continue..."
+
+
+done
