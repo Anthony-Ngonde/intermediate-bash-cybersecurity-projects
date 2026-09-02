@@ -25,6 +25,17 @@ fi
 
 }
 
+operating_system_info() {
+
+echo "============================"
+echo "Operating System Information"
+echo "============================"
+
+cat /etc/os-release
+
+}
 
 user_root_status
+
+operating_system_info
 
