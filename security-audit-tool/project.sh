@@ -36,6 +36,19 @@ cat /etc/os-release
 }
 
 
+disk_usage_checker() {
+
+echo "=========="
+echo "Disk Usage"
+echo "=========="
+
+df -h / |
+awk 'NR==2 {print $5}'
+
+
+}
+
+
 while true
 do
 
@@ -43,6 +56,7 @@ do
 echo
 echo "1.Current/Root User Status"
 echo "2.Operating System Information"
+echo "3.Disk Usage"
 echo "3.Exit"
 
 
@@ -61,6 +75,10 @@ case $choice in
  ;;
 
 3)
+ disk_usage_checker
+ ;;
+
+4)
  echo "Goodbye!"
  exit
 
