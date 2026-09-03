@@ -103,6 +103,18 @@ sudo journalctl -u ssh
 }
 
 
+users_with_login_shells() {
+
+echo "======================="
+echo "Users with Login Shells"
+echo "======================="
+
+grep -E '/bin/(bash|zh|ssh)$' /etc/passwd |
+cut -d ':' -f1
+
+}
+
+
 
 while true
 do
@@ -117,7 +129,8 @@ echo "5.Display Listening Ports"
 echo "6.Display Active Connections"
 echo "7.Display Firewall Status"
 echo "8.Failed SSH Attempts"
-echo "9.Exit"
+echo "9.Users with Login Shells"
+echo "10.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -159,6 +172,10 @@ case $choice in
  ;;
 
 9)
+ users_with_login_shells
+ ;;
+
+10)
  echo "Goodbye!"
  exit
 
