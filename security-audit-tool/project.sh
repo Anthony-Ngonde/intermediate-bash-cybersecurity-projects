@@ -72,7 +72,15 @@ echo "========================"
 echo "Display Failed Running Services"
 echo "========================"
 
-systemctl --failed --no-legend
+failed_services=$(systemctl --failed --no-legend)
+
+if [ -z "$failed_services"  ]
+   then
+    echo "Services: [PASS]"
+   else
+    echo "Services: [WARNING]"
+    score=$((score - 5))
+fi
 
 }
 
