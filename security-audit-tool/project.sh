@@ -115,6 +115,23 @@ cut -d ':' -f1
 }
 
 
+sensitive_files_permissions() {
+
+echo "============================================"
+echo "File Permissions on Selected Sensitive Files"
+echo "============================================"
+
+echo
+echo "Note: Enter: /etc/shadow or /etc/passwd"
+
+read -p "Enter filename: " file
+
+stat -c "%A" "$file"
+
+
+}
+
+
 
 while true
 do
@@ -130,7 +147,8 @@ echo "6.Display Active Connections"
 echo "7.Display Firewall Status"
 echo "8.Failed SSH Attempts"
 echo "9.Users with Login Shells"
-echo "10.Exit"
+echo "10.File Permissions on Selected Sensitive Files"
+echo "11.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -176,6 +194,10 @@ case $choice in
  ;;
 
 10)
+ sensitive_files_permissions
+ ;;
+
+11)
  echo "Goodbye!"
  exit
 
