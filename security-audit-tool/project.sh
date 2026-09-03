@@ -48,6 +48,7 @@ awk 'NR==2 {print $5}'
 
 }
 
+
 failed_running_services() {
 
 echo "========================"
@@ -55,6 +56,17 @@ echo "Display Failed Running Services"
 echo "========================"
 
 systemctl --failed --no-legend
+
+}
+
+
+listening_ports_checker() {
+
+echo "======================="
+echo "Display Listening Ports"
+echo "======================="
+
+ss -tuln
 
 }
 
@@ -68,7 +80,8 @@ echo "1.Current/Root User Status"
 echo "2.Operating System Information"
 echo "3.Disk Usage"
 echo "4.Display Running Services"
-echo "3.Exit"
+echo "5.Display Listening Ports"
+echo "6.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -94,6 +107,10 @@ case $choice in
  ;;
 
 5)
+ listening_ports_checker
+ ;;
+
+6)
  echo "Goodbye!"
  exit
 
