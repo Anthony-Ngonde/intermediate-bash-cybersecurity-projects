@@ -112,7 +112,15 @@ echo "======================="
 echo "Display Firewall Status"
 echo "======================="
 
-sudo ufw status
+if sudo ufw status | grep -q "Status: active"
+   then
+    echo "Firewall Status: [PASS]"
+   else
+    echo "Firewall Status: [WARNING]"
+    score=$((score - 10))
+
+fi
+
 
 }
 
