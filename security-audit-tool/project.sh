@@ -81,6 +81,19 @@ ss -tun
 }
 
 
+firewall_status_checker() {
+
+echo "======================="
+echo "Display Firewall Status"
+echo "======================="
+
+sudo ufw status
+
+
+}
+
+
+
 while true
 do
 
@@ -92,7 +105,8 @@ echo "3.Disk Usage"
 echo "4.Display Running Services"
 echo "5.Display Listening Ports"
 echo "6.Display Active Connections"
-echo "7.Exit"
+echo "7.Display Firewall Status"
+echo "8.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -126,6 +140,10 @@ case $choice in
  ;;
 
 7)
+ firewall_status_checker
+ ;;
+
+8)
  echo "Goodbye!"
  exit
 
