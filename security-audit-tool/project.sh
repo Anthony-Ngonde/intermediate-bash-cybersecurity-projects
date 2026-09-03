@@ -48,6 +48,16 @@ awk 'NR==2 {print $5}'
 
 }
 
+failed_running_services() {
+
+echo "========================"
+echo "Display Failed Running Services"
+echo "========================"
+
+systemctl --failed --no-legend
+
+}
+
 
 while true
 do
@@ -57,6 +67,7 @@ echo
 echo "1.Current/Root User Status"
 echo "2.Operating System Information"
 echo "3.Disk Usage"
+echo "4.Display Running Services"
 echo "3.Exit"
 
 
@@ -79,6 +90,10 @@ case $choice in
  ;;
 
 4)
+ failed_running_services
+ ;;
+
+5)
  echo "Goodbye!"
  exit
 
