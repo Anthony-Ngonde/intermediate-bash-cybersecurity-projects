@@ -132,6 +132,19 @@ stat -c "%A" "$file"
 }
 
 
+display_suspicious_processes() {
+
+echo "============================"
+echo "Display Suspicious Processes"
+echo "============================"
+
+read -p "Enter Process Name: " process
+
+ps aux | grep "$process"
+
+
+}
+
 
 while true
 do
@@ -148,7 +161,8 @@ echo "7.Display Firewall Status"
 echo "8.Failed SSH Attempts"
 echo "9.Users with Login Shells"
 echo "10.File Permissions on Selected Sensitive Files"
-echo "11.Exit"
+echo "11.Display Suspicious Processes"
+echo "12.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -198,6 +212,10 @@ case $choice in
  ;;
 
 11)
+ display_suspicious_processes
+ ;;
+
+12)
  echo "Goodbye!"
  exit
 
