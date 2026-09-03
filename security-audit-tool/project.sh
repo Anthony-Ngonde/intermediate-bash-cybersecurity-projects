@@ -146,6 +146,17 @@ ps aux | grep "$process"
 }
 
 
+system_log_errors() {
+
+echo "========================"
+echo "Recent System Log Errors"
+echo "========================"
+
+sudo journalctl -p err -b
+
+}
+
+
 while true
 do
 
@@ -162,7 +173,8 @@ echo "8.Failed SSH Attempts"
 echo "9.Users with Login Shells"
 echo "10.File Permissions on Selected Sensitive Files"
 echo "11.Display Suspicious Processes"
-echo "12.Exit"
+echo "12.Recent System Log Errors"
+echo "13.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -216,6 +228,10 @@ case $choice in
  ;;
 
 12)
+ system_log_errors
+ ;;
+
+13)
  echo "Goodbye!"
  exit
 
