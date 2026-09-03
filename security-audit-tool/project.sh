@@ -131,7 +131,16 @@ echo "==================="
 echo "Failed SSH Attempts"
 echo "==================="
 
-sudo journalctl -u ssh
+failed=$(sudo journalctl -u ssh | grep -c "Failed password")
+
+if [ "$failed" -eq 0  ]
+  then
+    echo "Failed SSH Attempts: [PASS]"
+  else
+    echo "Failed SSH Attempts: [WARNING]" - "$failed Failed Login Attmepts"
+    score=$((score - 5))
+
+fi
 
 }
 
