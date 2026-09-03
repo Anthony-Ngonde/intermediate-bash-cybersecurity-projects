@@ -70,6 +70,16 @@ ss -tuln
 
 }
 
+active_connections_checker() {
+
+echo "=========================="
+echo "Display Active Connections"
+echo "=========================="
+
+ss -tun
+
+}
+
 
 while true
 do
@@ -81,7 +91,8 @@ echo "2.Operating System Information"
 echo "3.Disk Usage"
 echo "4.Display Running Services"
 echo "5.Display Listening Ports"
-echo "6.Exit"
+echo "6.Display Active Connections"
+echo "7.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -111,6 +122,10 @@ case $choice in
  ;;
 
 6)
+ active_connections_checker
+ ;;
+
+7)
  echo "Goodbye!"
  exit
 
