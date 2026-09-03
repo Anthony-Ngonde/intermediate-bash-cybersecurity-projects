@@ -89,6 +89,16 @@ echo "======================="
 
 sudo ufw status
 
+}
+
+
+failed_ssh_attempts() {
+
+echo "==================="
+echo "Failed SSH Attempts"
+echo "==================="
+
+sudo journalctl -u ssh
 
 }
 
@@ -106,7 +116,8 @@ echo "4.Display Running Services"
 echo "5.Display Listening Ports"
 echo "6.Display Active Connections"
 echo "7.Display Firewall Status"
-echo "8.Exit"
+echo "8.Failed SSH Attempts"
+echo "9.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -144,6 +155,10 @@ case $choice in
  ;;
 
 8)
+ failed_ssh_attempts
+ ;;
+
+9)
  echo "Goodbye!"
  exit
 
