@@ -5,6 +5,9 @@ echo "Automated Security Audit Tool"
 echo "============================="
 
 
+score=100
+
+
 user_root_status() {
 
 echo "========================"
@@ -42,8 +45,22 @@ echo "=========="
 echo "Disk Usage"
 echo "=========="
 
-df -h / |
-awk 'NR==2 {print $5}'
+disk_usage=$(df -h / | awk 'NR==2 {print $5}' | tr -d '%')
+
+if [ "$disk_usage" -lt 80  ]
+   then
+     echo "Disk Usage: [PASS]" - "$disk_usage%"
+
+elif [ "$disk_usage" -lt 90  ]
+    then
+      echo "Disk Usage: [WARNING]" - "$disk_usage%"
+      score=$((score - 5))
+
+else
+   echo "Disk Usage: [FAIL]" - "$disk_usage%"
+   score=$((score - 10))
+
+fi
 
 
 }
