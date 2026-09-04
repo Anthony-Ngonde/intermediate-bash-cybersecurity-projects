@@ -5,7 +5,10 @@ echo "Automated Security Audit Tool"
 echo "============================="
 
 
-score=100
+#score=100
+baseline=base_audit.txt
+current=current_audit.txt
+
 
 
 user_root_status() {
@@ -214,6 +217,94 @@ fi
 }
 
 
+security_audit_score() {
+
+echo "===================="
+echo "Security Audit Score"
+echo "===================="
+
+score=100
+
+if [ "$score" -lt 0  ]
+  then
+   score=0
+
+fi
+
+
+disk_usage_checker
+failed_running_services
+firewall_status_checker
+failed_ssh_attempts
+sensitive_files_permissions
+system_log_errors
+
+if [ ! -f "$baseline"  ]
+  then
+
+
+   if [ "$score" -gt 90  ]
+     then
+       echo "Risk Level: LOW" >> "$baseline"
+
+   elif [ "$score" -gt 70  ]
+     then
+       echo "Risk Level: MEDIUM" >> "$baseline"
+
+   elif [ "$score" -gt 50  ]
+     then
+       echo "Risk Level: HIGH" "$baseline"
+
+   else
+       echo "Risk Level: CRITICAL" "$baseline"
+
+    fi
+  
+echo
+echo "Security Score: $score / 100" >> "$baseline"
+cat "$baseline"
+return
+
+fi
+
+
+if [ "$score" -gt 90  ]
+  then
+     echo "Risk Level: LOW" >> "$current"
+
+elif [ "$score" -gt 70  ]
+   then
+     echo "Risk Level: MEDIUM" >> "$current"
+
+elif [ "$score" -gt 50  ]
+    then
+      echo "Risk Level: HIGH" "$current"
+
+else
+    echo "Risk Level: CRITICAL" "$current"
+
+fi
+
+echo
+echo "Security Score: $score / 100" >> "$current"
+cat "$current"
+
+
+if cmp -s "$baseline" "$current"
+  then
+    echo
+    echo "The Security Audit is UNCHANGED"
+  else
+    echo
+    echo "The Security Audit is MODIFIED"
+
+fi
+
+
+}
+
+
+
 
 
 
@@ -234,7 +325,8 @@ echo "9.Users with Login Shells"
 echo "10.File Permissions on Selected Sensitive Files"
 echo "11.Display Suspicious Processes"
 echo "12.Recent System Log Errors"
-echo "13.Exit"
+echo "13.Security Audit Score"
+echo "14.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -292,6 +384,10 @@ case $choice in
  ;;
 
 13)
+ security_audit_score
+ ;;
+
+14)
  echo "Goodbye!"
  exit
 
