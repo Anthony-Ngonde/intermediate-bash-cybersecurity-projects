@@ -201,9 +201,20 @@ echo "========================"
 echo "Recent System Log Errors"
 echo "========================"
 
-sudo journalctl -p err -b
+errors=$(sudo journalctl -p err -b)
+
+if [ -z "$errors"  ]
+  then
+    echo "System Log Errors: [PASS]"
+  else
+    echo "System Log Errors: [WARNING]"
+    score=$((score - 10))
+fi
 
 }
+
+
+
 
 
 while true
