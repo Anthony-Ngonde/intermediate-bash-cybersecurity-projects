@@ -168,8 +168,15 @@ echo "Note: Enter: /etc/shadow or /etc/passwd"
 
 read -p "Enter filename: " file
 
-stat -c "%A" "$file"
+permissions=$(stat -c "%a" "$file")
 
+if [ "$permissions" = "640"  ] || [ "$permissions" = "644"  ]
+   then
+     echo "$file: [PASS] - ($permissions)"
+   else
+     echo "$file: [WARNING] - ($permissions)"
+     score=$((score - 10))
+fi
 
 }
 
