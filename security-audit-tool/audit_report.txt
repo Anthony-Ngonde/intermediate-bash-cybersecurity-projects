@@ -1,0 +1,171 @@
+====================
+Audit Security Report
+====================
+
+Generated: Sun Sep  6 03:15:33 AM EDT 2026
+
+=================
+Current/Root User
+=================
+Current User: anthony
+
+============================
+Operating System Information
+============================
+PRETTY_NAME="Kali GNU/Linux Rolling"
+NAME="Kali GNU/Linux"
+VERSION_ID="2025.4"
+VERSION="2025.4"
+VERSION_CODENAME=kali-rolling
+ID=kali
+ID_LIKE=debian
+HOME_URL="https://www.kali.org/"
+SUPPORT_URL="https://forums.kali.org/"
+BUG_REPORT_URL="https://bugs.kali.org/"
+ANSI_COLOR="1;31"
+
+==========
+Disk Usage
+==========
+44%
+
+================
+Running Services
+================
+  UNIT                           LOAD   ACTIVE SUB     DESCRIPTION
+  accounts-daemon.service        loaded active running Accounts Service
+  colord.service                 loaded active running Manage, Install and Generate Color Profiles
+  cron.service                   loaded active running Regular background program processing daemon
+  dbus.service                   loaded active running D-Bus System Message Bus
+  getty@tty1.service             loaded active running Getty on tty1
+  haveged.service                loaded active running Entropy Daemon based on the HAVEGE algorithm
+  lightdm.service                loaded active running Light Display Manager
+  ModemManager.service           loaded active running Modem Manager
+  NetworkManager.service         loaded active running Network Manager
+  pcscd.service                  loaded active running PC/SC Smart Card Daemon
+  polkit.service                 loaded active running Authorization Manager
+  rtkit-daemon.service           loaded active running RealtimeKit Scheduling Policy Service
+  ssh.service                    loaded active running OpenBSD Secure Shell server
+  systemd-journald.service       loaded active running Journal Service
+  systemd-logind.service         loaded active running User Login Management
+  systemd-udevd.service          loaded active running Rule-based Manager for Device Events and Files
+  udisks2.service                loaded active running Disk Manager
+  upower.service                 loaded active running Daemon for power management
+  user@1000.service              loaded active running User Manager for UID 1000
+  virtualbox-guest-utils.service loaded active running Virtualbox guest utils
+
+Legend: LOAD   → Reflects whether the unit definition was properly loaded.
+        ACTIVE → The high-level unit activation state, i.e. generalization of SUB.
+        SUB    → The low-level unit activation state, values depend on unit type.
+
+20 loaded units listed.
+
+===============
+Listening Ports
+===============
+Netid State  Recv-Q Send-Q Local Address:Port Peer Address:Port
+tcp   LISTEN 0      128          0.0.0.0:22        0.0.0.0:*   
+tcp   LISTEN 0      128             [::]:22           [::]:*   
+
+==================
+Active Connections
+==================
+Netid State Recv-Q Send-Q  Local Address:Port Peer Address:Port
+udp   ESTAB 0      0      10.0.2.15%eth0:68       10.0.2.2:67  
+
+===============
+Firewall Status
+===============
+Status: active
+
+To                         Action      From
+--                         ------      ----
+80                         ALLOW       Anywhere                  
+910                        DENY        Anywhere                  
+80/tcp                     ALLOW       Anywhere                  
+8080/tcp                   ALLOW       Anywhere                  
+22 (v6)                    DENY        Anywhere (v6)             
+80 (v6)                    ALLOW       Anywhere (v6)             
+910 (v6)                   DENY        Anywhere (v6)             
+80/tcp (v6)                ALLOW       Anywhere (v6)             
+8080/tcp (v6)              ALLOW       Anywhere (v6)             
+
+
+===================
+Failed SSH Attempts
+===================
+Aug 20 04:05:00 kali sshd-session[1203102]: Failed password for anthony from ::1 port 48698 ssh2
+Aug 20 04:05:07 kali sshd-session[1203102]: Failed password for anthony from ::1 port 48698 ssh2
+Aug 24 05:20:12 kali sshd-session[1526363]: Failed password for anthony from ::1 port 54540 ssh2
+Aug 24 05:20:21 kali sshd-session[1526363]: Failed password for anthony from ::1 port 54540 ssh2
+Aug 24 05:20:26 kali sshd-session[1526363]: Failed password for anthony from ::1 port 54540 ssh2
+
+=======================
+Users with Login Shells
+=======================
+root
+postgres
+anthony
+
+============================================
+File Permissions on Selected Sensitive Files
+============================================
+-rw-r--r-- 1 root root   3269 Aug 10 04:28 /etc/passwd
+-rw-r----- 1 root shadow 1451 Aug 10 04:27 /etc/shadow
+
+========================
+Recent System Log Errors
+========================
+Aug 31 02:54:37 kali kernel: vmwgfx 0000:00:02.0: [drm] *ERROR* vmwgfx seems to be running on an unsupported hypervisor.
+Aug 31 02:54:37 kali kernel: vmwgfx 0000:00:02.0: [drm] *ERROR* This configuration is likely broken.
+Aug 31 02:54:37 kali kernel: vmwgfx 0000:00:02.0: [drm] *ERROR* Please switch to a supported graphics device to avoid problems.
+Aug 31 02:54:37 kali systemd-ssh-generator[330]: Failed to query local AF_VSOCK CID: Cannot assign requested address
+Aug 31 02:54:37 kali (generato[317]: /usr/lib/systemd/system-generators/systemd-ssh-generator failed with exit status 1.
+Aug 31 02:55:31 kali lightdm[986]: gkr-pam: unable to locate daemon control file
+Aug 31 02:55:37 kali obexd[1540]: Unable to acquire registry: Error calling StartServiceByName for org.gnome.evolution.dataserver.Sources5: Unit evolution-source-registry.service not found.
+Aug 31 02:55:37 kali obexd[1540]: Unable to acquire registry: Error calling StartServiceByName for org.gnome.evolution.dataserver.Sources5: Unit evolution-source-registry.service not found.
+Aug 31 04:09:29 kali xfce4-screensaver-dialog[36127]: pam_unix(xfce4-screensaver:auth): conversation failed
+Aug 31 04:09:29 kali xfce4-screensaver-dialog[36127]: pam_unix(xfce4-screensaver:auth): auth could not identify password for [anthony]
+Aug 31 05:16:47 kali xfce4-screensaver-dialog[67416]: pam_unix(xfce4-screensaver:auth): conversation failed
+Aug 31 05:16:47 kali xfce4-screensaver-dialog[67416]: pam_unix(xfce4-screensaver:auth): auth could not identify password for [anthony]
+Aug 31 06:28:55 kali systemd-ssh-generator[105843]: Failed to query local AF_VSOCK CID: Cannot assign requested address
+Aug 31 06:28:55 kali (generato[105828]: /usr/lib/systemd/system-generators/systemd-ssh-generator failed with exit status 1.
+Aug 31 06:28:55 kali systemd-ssh-generator[105928]: Failed to query local AF_VSOCK CID: Cannot assign requested address
+Aug 31 06:28:55 kali (generato[105913]: /usr/lib/systemd/system-generators/systemd-ssh-generator failed with exit status 1.
+Aug 31 06:28:56 kali systemd-ssh-generator[106002]: Failed to query local AF_VSOCK CID: Cannot assign requested address
+Aug 31 06:28:56 kali (generato[105987]: /usr/lib/systemd/system-generators/systemd-ssh-generator failed with exit status 1.
+Aug 31 06:28:56 kali (generato[106108]: /usr/lib/systemd/system-generators/systemd-ssh-generator failed with exit status 1.
+Aug 31 06:28:56 kali systemd-ssh-generator[106124]: Failed to query local AF_VSOCK CID: Cannot assign requested address
+Aug 31 06:28:57 kali systemd-ssh-generator[106199]: Failed to query local AF_VSOCK CID: Cannot assign requested address
+Aug 31 06:28:57 kali (generato[106185]: /usr/lib/systemd/system-generators/systemd-ssh-generator failed with exit status 1.
+Aug 31 06:29:26 kali systemd-ssh-generator[106765]: Failed to query local AF_VSOCK CID: Cannot assign requested address
+Aug 31 06:29:26 kali (generato[106751]: /usr/lib/systemd/system-generators/systemd-ssh-generator failed with exit status 1.
+Aug 31 06:29:36 kali systemd-ssh-generator[106985]: Failed to query local AF_VSOCK CID: Cannot assign requested address
+Aug 31 06:29:36 kali (generato[106971]: /usr/lib/systemd/system-generators/systemd-ssh-generator failed with exit status 1.
+Aug 31 09:04:32 kali kernel: watchdog: BUG: soft lockup - CPU#0 stuck for 38s! [swapper/0:0]
+Sep 01 08:53:56 kali kernel: e1000 0000:00:03.0 eth0: Reset adapter
+Sep 02 09:01:39 kali kernel: e1000 0000:00:03.0 eth0: Reset adapter
+Sep 02 09:01:40 kali kernel: e1000 0000:00:03.0 eth0: Reset adapter
+Sep 03 02:42:43 kali kernel: watchdog: BUG: soft lockup - CPU#0 stuck for 501s! [swapper/0:0]
+Sep 03 02:42:43 kali systemd[1]: systemd-udevd.service: Watchdog timeout (limit 3min)!
+Sep 03 02:42:42 kali systemd[1]: systemd-journald.service: Watchdog timeout (limit 3min)!
+Sep 03 06:32:32 kali xfce4-screensaver-dialog[627225]: pam_unix(xfce4-screensaver:auth): conversation failed
+Sep 03 06:32:32 kali xfce4-screensaver-dialog[627225]: pam_unix(xfce4-screensaver:auth): auth could not identify password for [anthony]
+Sep 03 07:58:57 kali xfce4-screensaver-dialog[669389]: pam_unix(xfce4-screensaver:auth): conversation failed
+Sep 03 07:58:57 kali xfce4-screensaver-dialog[669389]: pam_unix(xfce4-screensaver:auth): auth could not identify password for [anthony]
+Sep 03 08:49:16 kali kernel: e1000 0000:00:03.0 eth0: Reset adapter
+Sep 03 08:49:16 kali kernel: e1000 0000:00:03.0 eth0: Reset adapter
+Sep 04 06:44:37 kali kernel: watchdog: BUG: soft lockup - CPU#0 stuck for 1184s! [swapper/0:0]
+Sep 04 07:55:17 kali kernel: e1000 0000:00:03.0 eth0: Reset adapter
+Sep 04 07:55:17 kali kernel: e1000 0000:00:03.0 eth0: Reset adapter
+Sep 05 06:10:11 kali xfce4-screensaver-dialog[893451]: pam_unix(xfce4-screensaver:auth): conversation failed
+Sep 05 06:10:11 kali xfce4-screensaver-dialog[893451]: pam_unix(xfce4-screensaver:auth): auth could not identify password for [anthony]
+Sep 05 09:51:09 kali xfce4-screensaver-dialog[998706]: pam_unix(xfce4-screensaver:auth): conversation failed
+Sep 05 10:39:45 kali kernel: e1000 0000:00:03.0 eth0: Reset adapter
+Sep 05 10:39:45 kali kernel: e1000 0000:00:03.0 eth0: Reset adapter
+
+Risk Level: MEDIUM
+Security Score: 85 / 100
+
+Risk Level: MEDIUM
+Security Score: 85 / 100

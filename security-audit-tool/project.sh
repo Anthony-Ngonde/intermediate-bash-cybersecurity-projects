@@ -8,8 +8,8 @@ echo "============================="
 #score=100
 baseline=base_audit.txt
 current=current_audit.txt
-
-
+current_date=$(date)
+audit_report=audit_report.txt
 
 user_root_status() {
 
@@ -71,9 +71,9 @@ fi
 
 failed_running_services() {
 
-echo "========================"
+echo "==============================="
 echo "Display Failed Running Services"
-echo "========================"
+echo "================================"
 
 failed_services=$(systemctl --failed --no-legend)
 
@@ -304,6 +304,136 @@ fi
 }
 
 
+save_security_report() {
+
+{
+
+
+echo "===================="
+echo "Audit Security Report"
+echo "===================="
+echo
+echo "Generated: $current_date"
+
+echo
+echo "================="
+echo "Current/Root User"
+echo "================="
+
+user=$(whoami)
+echo "Current User: $user"
+
+
+echo
+echo "============================"
+echo "Operating System Information"
+echo "============================"
+
+cat /etc/os-release
+
+
+echo
+echo "=========="
+echo "Disk Usage"
+echo "=========="
+
+df -h / |
+awk 'NR==2 {print $5}'
+
+
+echo 
+echo "================"
+echo "Running Services"
+echo "================"
+
+systemctl --type=service --state=running
+
+
+echo
+echo "==============="
+echo "Listening Ports"
+echo "==============="
+
+ss -tuln
+
+
+echo 
+echo "=================="
+echo "Active Connections"
+echo "=================="
+
+ss -tun
+
+
+echo 
+echo "==============="
+echo "Firewall Status"
+echo "==============="
+
+sudo ufw status
+
+
+echo
+echo "==================="
+echo "Failed SSH Attempts"
+echo "==================="
+
+sudo journalctl -u ssh |
+grep "Failed password"
+
+
+echo 
+echo "======================="
+echo "Users with Login Shells"
+echo "======================="
+
+grep -E '/bin/(bash|sh|zsh)$' /etc/passwd |
+cut -d ':' -f1
+
+
+echo
+echo "============================================"
+echo "File Permissions on Selected Sensitive Files"
+echo "============================================"
+
+ls -l /etc/passwd /etc/shadow
+
+
+echo
+echo "========================"
+echo "Recent System Log Errors"
+echo "========================"
+
+sudo journalctl -p err -b
+
+
+if [ -f "$baseline"  ]
+   then
+     echo 
+     cat "$baseline"
+   else
+     echo
+     echo "File not found"
+fi
+
+
+if [ -f "$current"  ]
+   then
+     echo
+     cat "$current"
+   else
+     echo
+     cat "File not found"
+fi
+
+
+} > "$audit_report"
+
+echo
+echo "Audit Security Report generated successfully in $audit_report"
+
+
+}
 
 
 
@@ -326,7 +456,8 @@ echo "10.File Permissions on Selected Sensitive Files"
 echo "11.Display Suspicious Processes"
 echo "12.Recent System Log Errors"
 echo "13.Security Audit Score"
-echo "14.Exit"
+echo "14.Save Security Report"
+echo "15.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -388,6 +519,10 @@ case $choice in
  ;;
 
 14)
+ save_security_report
+ ;;
+
+15)
  echo "Goodbye!"
  exit
 
