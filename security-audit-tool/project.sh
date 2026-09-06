@@ -436,6 +436,18 @@ echo "Audit Security Report generated successfully in $audit_report"
 }
 
 
+view_security_report() {
+
+if [ -s "$audit_report"  ]
+   then
+     cat "$audit_report"
+   else
+     echo "Audit Security Report not found"
+
+fi
+
+}
+
 
 
 while true
@@ -457,7 +469,8 @@ echo "11.Display Suspicious Processes"
 echo "12.Recent System Log Errors"
 echo "13.Security Audit Score"
 echo "14.Save Security Report"
-echo "15.Exit"
+echo "15.View Security Report"
+echo "16.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -523,6 +536,10 @@ case $choice in
  ;;
 
 15)
+ view_security_report
+ ;;
+
+16)
  echo "Goodbye!"
  exit
 
