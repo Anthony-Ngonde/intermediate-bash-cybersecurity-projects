@@ -31,8 +31,39 @@ sudo tcpdump -i "$interface" -c 10
 }
 
 
+while true
+do
 
 
-#list_network_interfaces
-capture_packets_function
+echo
+echo "1.List Network Interfaces"
+echo "2.Capture Packets"
+echo "3.Exit"
 
+
+read -p "Enter your choice: " choice
+
+
+case $choice in
+
+1)
+ list_network_interfaces
+ ;;
+
+2)
+ capture_packets_function
+ ;;
+
+3)
+ echo "Goodbye!"
+ exit
+
+
+esac
+
+
+read -p "Press Enter to Continue..."
+
+
+
+done
