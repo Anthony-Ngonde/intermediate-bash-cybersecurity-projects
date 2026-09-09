@@ -15,5 +15,24 @@ ip -br link
 
 }
 
-list_network_interfaces
+
+capture_packets_function() {
+
+echo "==============="
+echo "Capture Packets"
+echo "==============="
+
+echo "Note: Enter lo/eth0"
+
+read -p "Enter Interface Name: " interface
+
+sudo tcpdump -i "$interface" -c 10 
+
+}
+
+
+
+
+#list_network_interfaces
+capture_packets_function
 
