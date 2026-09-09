@@ -1,1 +1,1 @@
-## Automated Security Audit Tool
+# Automated Security Audit Tool
