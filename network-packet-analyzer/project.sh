@@ -47,6 +47,21 @@ sudo tcpdump -i "$interface" tcp -c 10
 }
 
 
+capture_udp_packets() {
+
+echo "==================="
+echo "Capture UDP Packets"
+echo "==================="
+
+echo "Note: Enter lo/eth0"
+
+read -p "Enter Interface Name: " interface
+
+sudo tcpdump -i "$interface" udp -c 10
+
+
+}
+
 
 while true
 do
@@ -56,7 +71,8 @@ echo
 echo "1.List Network Interfaces"
 echo "2.Capture Packets"
 echo "3.Capture TCP Packets"
-echo "4.Exit"
+echo "4.Capture UDP Packets"
+echo "5.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -77,6 +93,10 @@ case $choice in
  ;;
 
 4)
+ capture_udp_packets
+ ;;
+
+5)
  echo "Goodbye!"
  exit
 
