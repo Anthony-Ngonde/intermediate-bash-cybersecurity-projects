@@ -63,6 +63,21 @@ sudo tcpdump -i "$interface" udp -c 10
 }
 
 
+capture_icmp_packets() {
+
+echo "===================="
+echo "Capture ICMP Packets"
+echo "===================="
+
+echo "Note: Enter lo/eth0"
+
+read -p "Enter Interface Name: " interface
+
+sudo tcpdump -i "$interface" udp -c 10
+
+}
+
+
 while true
 do
 
@@ -72,7 +87,8 @@ echo "1.List Network Interfaces"
 echo "2.Capture Packets"
 echo "3.Capture TCP Packets"
 echo "4.Capture UDP Packets"
-echo "5.Exit"
+echo "5.Capture ICMP Packets"
+echo "6.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -97,6 +113,10 @@ case $choice in
  ;;
 
 5)
+ capture_icmp_packets
+ ;;
+
+6)
  echo "Goodbye!"
  exit
 
