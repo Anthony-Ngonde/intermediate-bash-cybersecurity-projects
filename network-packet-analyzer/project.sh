@@ -117,6 +117,24 @@ sudo tcpdump -i "$interface" port "$number" -c 10 >> "$captured_packets"
 }
 
 
+view_saved_captures() {
+
+echo "==================="
+echo "View Saved Captures"
+echo "==================="
+
+if [ -s "$captured_packets"  ]
+   then
+     cat "$captured_packets"
+   else
+     echo "No file found."
+
+fi
+
+
+}
+
+
 while true
 do
 
@@ -129,7 +147,8 @@ echo "4.Capture UDP Packets"
 echo "5.Capture ICMP Packets"
 echo "6.Filter by IP Address"
 echo "7.Filter by Port"
-echo "8.Exit"
+echo "8.View Saved Captured Packets"
+echo "9.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -166,6 +185,10 @@ case $choice in
  ;;
 
 8)
+ view_saved_captures
+ ;;
+
+9)
  echo "Goodbye!"
  exit
 
