@@ -78,6 +78,26 @@ sudo tcpdump -i "$interface" udp -c 10
 }
 
 
+filter_by_ip() {
+
+echo "===================="
+echo "Filter by IP Address"
+echo "===================="
+
+echo "Note: Enter lo/eth0"
+
+read -p "Enter Interface name: " interface
+
+read -p "Enter IP Address: " ip
+
+sudo tcpdump -i "$interface" host "$ip" -c 10 
+
+
+}
+
+
+
+
 while true
 do
 
@@ -88,7 +108,8 @@ echo "2.Capture Packets"
 echo "3.Capture TCP Packets"
 echo "4.Capture UDP Packets"
 echo "5.Capture ICMP Packets"
-echo "6.Exit"
+echo "6.Filter by IP Address"
+echo "7.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -117,6 +138,10 @@ case $choice in
  ;;
 
 6)
+ filter_by_ip
+ ;;
+
+7)
  echo "Goodbye!"
  exit
 
