@@ -4,6 +4,8 @@ echo "======================="
 echo "Network Packet Analyzer"
 echo "======================="
 
+captured_packets=captured_packets.pcap
+
 
 list_network_interfaces() {
 
@@ -26,7 +28,7 @@ echo "Note: Enter lo/eth0"
 
 read -p "Enter Interface Name: " interface
 
-sudo tcpdump -i "$interface" -c 10 
+sudo tcpdump -i "$interface" -c 10 >> "$captured_packets"
 
 }
 
@@ -41,7 +43,7 @@ echo "Note: Enter lo/eth0"
 
 read -p "Enter Interface Name: " interface
 
-sudo tcpdump -i "$interface" tcp -c 10
+sudo tcpdump -i "$interface" tcp -c 10 >> "$captured_packets"
 
 
 }
@@ -57,7 +59,7 @@ echo "Note: Enter lo/eth0"
 
 read -p "Enter Interface Name: " interface
 
-sudo tcpdump -i "$interface" udp -c 10
+sudo tcpdump -i "$interface" udp -c 10 >> "$captured_packets"
 
 
 }
@@ -73,7 +75,8 @@ echo "Note: Enter lo/eth0"
 
 read -p "Enter Interface Name: " interface
 
-sudo tcpdump -i "$interface" udp -c 10
+sudo tcpdump -i "$interface" udp -c 10 >> "$captured_packets"
+
 
 }
 
@@ -90,7 +93,7 @@ read -p "Enter Interface name: " interface
 
 read -p "Enter IP Address: " ip
 
-sudo tcpdump -i "$interface" host "$ip" -c 10 
+sudo tcpdump -i "$interface" host "$ip" -c 10 >> "$captured_packets" 
 
 
 }
@@ -108,7 +111,7 @@ read -p "Enter Interface name: " interface
 
 read -p "Enter Port Number: " number
 
-sudo tcpdump -i "$interface" port "$number" -c 10
+sudo tcpdump -i "$interface" port "$number" -c 10 >> "$captured_packets"
 
 
 }
