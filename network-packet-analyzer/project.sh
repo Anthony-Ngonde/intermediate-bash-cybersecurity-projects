@@ -183,6 +183,19 @@ echo "Packets Traffic Summary saved to $packets_summary"
 }
 
 
+view_packets_traffic() {
+
+if [ -f "$packets_summary"  ]
+  then
+    cat "$packets_summary"
+   else
+    echo "No file found"
+
+fi
+
+}
+
+
 while true
 do
 
@@ -197,7 +210,8 @@ echo "6.Filter by IP Address"
 echo "7.Filter by Port"
 echo "8.View Saved Captured Packets"
 echo "9.Generate Packets Traffic Summary"
-echo "10.Exit"
+echo "10.View Packets Traffic Summary"
+echo "11.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -242,6 +256,10 @@ case $choice in
  ;;
 
 10)
+ view_packets_traffic
+ ;; 
+
+11)
  echo "Goodbye!"
  exit
 
