@@ -5,6 +5,8 @@ echo "Network Packet Analyzer"
 echo "======================="
 
 captured_packets=captured_packets.pcap
+packets_summary=packets_summary.txt
+current_date=$(date)
 
 
 list_network_interfaces() {
@@ -43,7 +45,8 @@ echo "Note: Enter lo/eth0"
 
 read -p "Enter Interface Name: " interface
 
-sudo tcpdump -i "$interface" tcp -c 10 >> "$captured_packets"
+sudo tcpdump -i "$interface" tcp -c 10 |
+sed 's/^/[TCP] /' >> "$captured_packets"
 
 
 }
@@ -59,7 +62,8 @@ echo "Note: Enter lo/eth0"
 
 read -p "Enter Interface Name: " interface
 
-sudo tcpdump -i "$interface" udp -c 10 >> "$captured_packets"
+sudo tcpdump -i "$interface" udp -c 10 |
+sed 's/^/[UDP] /' >> "$captured_packets"
 
 
 }
@@ -75,7 +79,8 @@ echo "Note: Enter lo/eth0"
 
 read -p "Enter Interface Name: " interface
 
-sudo tcpdump -i "$interface" udp -c 10 >> "$captured_packets"
+sudo tcpdump -i "$interface" udp -c 10 |
+sed 's/^/[ICMP] /' >> "$captured_packets"
 
 
 }
@@ -135,6 +140,49 @@ fi
 }
 
 
+packets_traffic_summary() {
+
+{
+
+
+if [ ! -f "$captured_packets"  ]
+   then
+     echo "No captured packets found"
+     return
+
+fi
+
+
+total_packets=$(grep -c "^" "$captured_packets")
+
+tcp_packets=$(grep -c "TCP" "$captured_packets")
+
+udp_packets=$(grep -c "UDP" "$captured_packets")
+
+icmp_packets=$(grep -c "ICMP" "$captured_packets")
+
+
+echo
+echo "=================="
+echo "Traffic Statistics"
+echo "=================="
+echo
+echo "Generated: $current_date"
+echo
+echo "Total Packets: $total_packets"
+echo "TCP Packets: $tcp_packets"
+echo "UDP Packets: $udp_packets"
+echo "ICMP Packets: $icmp_packets"
+
+
+} >> "$packets_summary"
+
+echo
+echo "Packets Traffic Summary saved to $packets_summary"
+
+}
+
+
 while true
 do
 
@@ -148,7 +196,8 @@ echo "5.Capture ICMP Packets"
 echo "6.Filter by IP Address"
 echo "7.Filter by Port"
 echo "8.View Saved Captured Packets"
-echo "9.Exit"
+echo "9.Generate Packets Traffic Summary"
+echo "10.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -189,6 +238,10 @@ case $choice in
  ;;
 
 9)
+ packets_traffic_summary
+ ;;
+
+10)
  echo "Goodbye!"
  exit
 

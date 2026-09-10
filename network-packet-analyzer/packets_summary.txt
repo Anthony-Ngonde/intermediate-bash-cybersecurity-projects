@@ -1,0 +1,22 @@
+
+==================
+Traffic Statistics
+==================
+
+Generated: Thu Sep 10 07:45:21 AM EDT 2026
+
+Total Packets: 60
+TCP Packets: 10
+UDP Packets: 10
+ICMP Packets: 3
+
+==================
+Traffic Statistics
+==================
+
+Generated: Thu Sep 10 07:51:49 AM EDT 2026
+
+Total Packets: 30
+TCP Packets: 10
+UDP Packets: 10
+ICMP Packets: 10
