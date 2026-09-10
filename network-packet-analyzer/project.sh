@@ -96,6 +96,22 @@ sudo tcpdump -i "$interface" host "$ip" -c 10
 }
 
 
+filter_by_port() {
+
+echo "=============="
+echo "Filter by Port"
+echo "=============="
+
+echo "Note: Enter lo/eth0"
+
+read -p "Enter Interface name: " interface
+
+read -p "Enter Port Number: " number
+
+sudo tcpdump -i "$interface" port "$number" -c 10
+
+
+}
 
 
 while true
@@ -109,7 +125,8 @@ echo "3.Capture TCP Packets"
 echo "4.Capture UDP Packets"
 echo "5.Capture ICMP Packets"
 echo "6.Filter by IP Address"
-echo "7.Exit"
+echo "7.Filter by Port"
+echo "8.Exit"
 
 
 read -p "Enter your choice: " choice
@@ -142,6 +159,10 @@ case $choice in
  ;;
 
 7)
+ filter_by_port
+ ;;
+
+8)
  echo "Goodbye!"
  exit
 
