@@ -43,6 +43,17 @@ awk '$9 == 403' "$log_file"
 }
 
 
+repeated_requests() {
+
+echo "================="
+echo "Repeated Requests"
+echo "================="
+
+awk 'NF > 0 {print $7}' "$log_file" | sort | uniq -c | sort -nr | head -2
+
+
+}
+
 
 while true
 do
@@ -52,7 +63,8 @@ echo
 echo "1.Most Active IPs"
 echo "2.404 Errors"
 echo "3.403 Erros"
-echo "4.Exit"
+echo "4.Repeated Requests"
+echo "5.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -73,6 +85,10 @@ case $choice in
  ;;
 
 4)
+ repeated_requests
+ ;;
+
+5)
  echo "Goodbye!"
  exit
 
