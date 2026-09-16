@@ -30,6 +30,40 @@ awk '$9 == 404' "$log_file"
 
 }
 
-most_active_ips
 
-404_errors
+while true
+do
+
+
+echo
+echo "1.Most Active IPs"
+echo "2.404 Errors"
+echo "3.Exit"
+
+echo
+read -p "Enter your choice: " choice
+
+
+case $choice in
+
+1)
+ most_active_ips
+ ;;
+
+2)
+ 404_errors
+ ;;
+
+3)
+ echo "Goodbye!"
+ exit
+
+esac
+
+
+echo
+read -p "Press Enter to Continue..."
+
+
+
+done
