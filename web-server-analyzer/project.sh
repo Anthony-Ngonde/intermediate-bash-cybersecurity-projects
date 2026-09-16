@@ -67,6 +67,20 @@ grep -Ei '\.\./|<script>|union.*select' "$log_file"
 }
 
 
+sensitive_path_requests() {
+
+echo "==========================="
+echo "Requests to Sensitive Paths"
+echo "==========================="
+
+grep -Ei 'admin|env|git|phpmyadmin' "$log_file"
+
+
+}
+
+
+
+
 while true
 do
 
@@ -77,7 +91,8 @@ echo "2.404 Errors"
 echo "3.403 Erros"
 echo "4.Repeated Requests"
 echo "5.Suspicious Request Patterns"
-echo "6.Exit"
+echo "6.Requests to Sensitive Paths"
+echo "7.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -106,6 +121,10 @@ case $choice in
  ;;
 
 6)
+ sensitive_path_requests
+ ;;
+
+7)
  echo "Goodbye!"
  exit
 
