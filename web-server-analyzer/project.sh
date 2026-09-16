@@ -31,6 +31,19 @@ awk '$9 == 404' "$log_file"
 }
 
 
+403_errors() {
+
+echo "============"
+echo "403 Errors"
+echo "==========="
+
+awk '$9 == 403' "$log_file"
+
+
+}
+
+
+
 while true
 do
 
@@ -38,7 +51,8 @@ do
 echo
 echo "1.Most Active IPs"
 echo "2.404 Errors"
-echo "3.Exit"
+echo "3.403 Erros"
+echo "4.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -55,6 +69,10 @@ case $choice in
  ;;
 
 3)
+ 403_errors
+ ;;
+
+4)
  echo "Goodbye!"
  exit
 
