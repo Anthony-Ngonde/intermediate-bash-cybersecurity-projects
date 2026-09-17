@@ -6,7 +6,8 @@ echo "=============================="
 
 
 log_file=test_access.log
-
+analysis_output=security_analysis.txt
+current_date=$(date)
 
 most_active_ips() {
 
@@ -168,10 +169,27 @@ grep -Ei 'curl|Wget|python-requests|sqlmap' "$log_file"
 
 
 
+} > "$analysis_output"
+
+echo
+echo "Report Generated Successfully in $analysis_output"
 
 }
 
+
+view_security_analysis() {
+
+if [ -s "$analysis_output"  ]
+   then
+     cat "$analysis_output"
+   else
+     echo "File not found"
+
+fi
+
 }
+
+
 
 
 while true
@@ -187,7 +205,8 @@ echo "5.Suspicious Request Patterns"
 echo "6.Requests to Sensitive Paths"
 echo "7.Unusual User Agents"
 echo "8.Generate Security Analysis Report"
-echo "9.Exit"
+echo "9.View Security Analysis Report"
+echo "10.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -228,6 +247,10 @@ case $choice in
  ;;
 
 9)
+ view_security_analysis
+ ;;
+
+10)
  echo "Goodbye!"
  exit
 
