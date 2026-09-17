@@ -79,6 +79,17 @@ grep -Ei 'admin|env|git|phpmyadmin' "$log_file"
 }
 
 
+unusual_user_agents() {
+
+echo "==================="
+echo "Unusual User Agents"
+echo "===================="
+
+grep -Ei 'curl|Wget|python-requests|sqlmap' "$log_file"
+
+}
+
+
 
 
 while true
@@ -92,7 +103,8 @@ echo "3.403 Erros"
 echo "4.Repeated Requests"
 echo "5.Suspicious Request Patterns"
 echo "6.Requests to Sensitive Paths"
-echo "7.Exit"
+echo "7.Unusual User Agents"
+echo "8.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -125,6 +137,10 @@ case $choice in
  ;;
 
 7)
+ unusual_user_agents
+ ;;
+
+8)
  echo "Goodbye!"
  exit
 
