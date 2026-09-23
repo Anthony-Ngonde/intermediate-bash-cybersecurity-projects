@@ -29,6 +29,39 @@ uname -r
 }
 
 
-#operating_system
+while true
+do
 
-kernel_version
+
+echo
+echo "1.Operating System"
+echo "2.Kernel Version"
+echo "3.Exit"
+
+echo
+read -p "Enter your choice: " choice
+
+
+case $choice in
+
+1)
+ operating_system
+ ;;
+
+2)
+ kernel_version
+ ;;
+
+3)
+ echo "Goodbye!"
+ exit
+
+esac
+
+
+echo
+read -p "Press Enter to Continue..."
+
+
+
+done
