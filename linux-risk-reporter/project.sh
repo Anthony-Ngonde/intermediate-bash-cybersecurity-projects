@@ -75,6 +75,18 @@ ps aux
 }
 
 
+check_listening_ports() {
+
+echo "====================="
+echo "Check Listening Ports"
+echo "====================="
+
+ss -tuln
+
+
+}
+
+
 
 while true
 do
@@ -87,7 +99,8 @@ echo "3.Installed Packages and Version"
 echo "4.Available Security Updates"
 echo "5.Identify Outdated Packages"
 echo "6.Display Running Services"
-echo "7.Exit"
+echo "7.Check Listening Ports"
+echo "8.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -120,6 +133,10 @@ case $choice in
  ;;
 
 7)
+ check_listening_ports
+ ;;
+
+8)
  echo "Goodbye!"
  exit
 
