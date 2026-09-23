@@ -41,6 +41,19 @@ dpkg-query -W -f='${Package} ${Version}\n'
 }
 
 
+available_security_updates() {
+
+echo "=========================="
+echo "Available Security Updates"
+echo "=========================="
+
+sudo apt full-upgrade --simulate
+
+
+}
+
+
+
 
 while true
 do
@@ -50,7 +63,8 @@ echo
 echo "1.Operating System"
 echo "2.Kernel Version"
 echo "3.Installed Packages and Version"
-echo "4.Exit"
+echo "4.Available Security Updates"
+echo "5.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -71,6 +85,10 @@ case $choice in
  ;;
 
 4)
+ available_security_updates
+ ;;
+
+5)
  echo "Goodbye!"
  exit
 
