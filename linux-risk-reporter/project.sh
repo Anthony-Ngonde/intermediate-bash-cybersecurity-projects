@@ -18,5 +18,17 @@ grep "PRETTY_NAME"
 
 }
 
+kernel_version() {
 
-operating_system
+echo "=============="
+echo "Kernel Version"
+echo "=============="
+
+uname -r
+
+}
+
+
+#operating_system
+
+kernel_version
