@@ -29,6 +29,19 @@ uname -r
 }
 
 
+installed_packages_versions() {
+
+echo "==============================="
+echo "Installed Packages and Versions"
+echo "==============================="
+
+dpkg-query -W -f='${Package} ${Version}\n'
+
+
+}
+
+
+
 while true
 do
 
@@ -36,7 +49,8 @@ do
 echo
 echo "1.Operating System"
 echo "2.Kernel Version"
-echo "3.Exit"
+echo "3.Installed Packages and Version"
+echo "4.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -53,6 +67,10 @@ case $choice in
  ;;
 
 3)
+ installed_packages_versions
+ ;;
+
+4)
  echo "Goodbye!"
  exit
 
