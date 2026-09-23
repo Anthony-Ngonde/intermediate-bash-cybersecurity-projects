@@ -53,6 +53,17 @@ sudo apt full-upgrade --simulate
 }
 
 
+outdated_packages() {
+
+echo "================"
+echo "Outdated Packages"
+echo "================="
+
+apt list --upgradable
+
+
+}
+
 
 
 while true
@@ -64,7 +75,8 @@ echo "1.Operating System"
 echo "2.Kernel Version"
 echo "3.Installed Packages and Version"
 echo "4.Available Security Updates"
-echo "5.Exit"
+echo "5.Identify Outdated Packages"
+echo "6.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -89,6 +101,10 @@ case $choice in
  ;;
 
 5)
+ outdated_packages
+ ;;
+
+6)
  echo "Goodbye!"
  exit
 
