@@ -64,6 +64,16 @@ apt list --upgradable
 
 }
 
+display_running_services() {
+
+echo "========================"
+echo "Display Running Services"
+echo "========================"
+
+ps aux
+
+}
+
 
 
 while true
@@ -76,7 +86,8 @@ echo "2.Kernel Version"
 echo "3.Installed Packages and Version"
 echo "4.Available Security Updates"
 echo "5.Identify Outdated Packages"
-echo "6.Exit"
+echo "6.Display Running Services"
+echo "7.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -105,6 +116,10 @@ case $choice in
  ;;
 
 6)
+ display_running_services
+ ;;
+
+7)
  echo "Goodbye!"
  exit
 
