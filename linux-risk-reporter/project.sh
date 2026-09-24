@@ -145,6 +145,22 @@ echo "$current_date | Check File Permissions | MEDIUM | OPEN" >> "$vulnerability
 }
 
 
+view_vulnerability_file() {
+
+echo "=================="
+echo "VULNERABILITY FILE"
+echo "=================="
+
+if [ -s "$vulnerability_file"  ]
+   then
+     cat "$vulnerability_file"
+   else
+     echo "File not found"
+
+fi
+
+}
+
 
 
 while true
@@ -161,7 +177,8 @@ echo "6.Display Running Services"
 echo "7.Check Listening Ports"
 echo "8.Check Firewall Status"
 echo "9.Check Important File Permissions"
-echo "10.Exit"
+echo "10.View Vulnerability File"
+echo "11.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -206,6 +223,10 @@ case $choice in
  ;;
 
 10)
+ view_vulnerability_file
+ ;;
+
+11)
  echo "Goodbye!"
  exit
 
