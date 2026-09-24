@@ -99,6 +99,28 @@ sudo ufw status
 }
 
 
+important_file_permissions() {
+
+echo "=========================="
+echo "Important File Permissions"
+echo "=========================="
+
+echo
+echo "Note: Enter /etc/passwd, /etc/shadow, /etc/group, /etc/sudoers"
+
+echo
+read -p "Enter file name: " file
+
+permissions=$(ls -l "$file")
+
+echo "Permissions: $permissions"
+
+
+}
+
+
+
+
 while true
 do
 
@@ -112,7 +134,8 @@ echo "5.Identify Outdated Packages"
 echo "6.Display Running Services"
 echo "7.Check Listening Ports"
 echo "8.Check Firewall Status"
-echo "9.Exit"
+echo "9.Check Important File Permissions"
+echo "10.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -153,6 +176,10 @@ case $choice in
  ;;
 
 9)
+ important_file_permissions
+ ;;
+
+10)
  echo "Goodbye!"
  exit
 
