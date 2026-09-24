@@ -87,6 +87,17 @@ ss -tuln
 }
 
 
+check_firewall_status() {
+
+echo "====================="
+echo "Check Firewall Status"
+echo "====================="
+
+sudo ufw status
+
+
+}
+
 
 while true
 do
@@ -100,7 +111,8 @@ echo "4.Available Security Updates"
 echo "5.Identify Outdated Packages"
 echo "6.Display Running Services"
 echo "7.Check Listening Ports"
-echo "8.Exit"
+echo "8.Check Firewall Status"
+echo "9.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -137,6 +149,10 @@ case $choice in
  ;;
 
 8)
+ check_firewall_status
+ ;;
+
+9)
  echo "Goodbye!"
  exit
 
