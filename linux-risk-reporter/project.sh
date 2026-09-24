@@ -80,7 +80,7 @@ echo "$current_date | Outdated Packages Check | MEDIUM | OPEN" >> "$vulnerabilit
 
 
 
-display_running_services() {
+risky_running_services() {
 
 echo "========================"
 echo "Display Running Services"
@@ -88,7 +88,7 @@ echo "========================"
 
 ps aux
 
-echo "$current_date | Display Running Services | LOW | OPEN" >> "$vulnerability_file"
+echo "$current_date | Risky Running Services | CRITICAL | OPEN" >> "$vulnerability_file"
 
 
 }
@@ -184,6 +184,44 @@ echo "Entry Deleted Successfully"
 }
 
 
+count_severity_alerts() {
+
+echo "====================="
+echo "Count Severity Alerts"
+echo "====================="
+
+while IFS='|' read -r date security severity findings
+do
+
+severity=$(echo "$severity" | xargs)
+
+
+if [ "$severity" = "LOW"  ]; then
+    ((low++))
+
+elif [ "$severity" = "MEDIUM"  ]; then
+     ((medium++))
+
+elif [ "$severity" = "HIGH"  ]; then
+     ((high++))
+
+elif [ "$severity" = "CRITICAL"  ]; then
+     ((critical++))
+
+fi
+
+
+done < "$vulnerability_file"
+
+echo
+echo "LOW: $low"
+echo "MEDIUM: $medium"
+echo "HIGH: $high"
+echo "CRITICAL : $critical"
+
+
+}
+
 
 
 while true
@@ -202,7 +240,8 @@ echo "8.Check Firewall Status"
 echo "9.Check Important File Permissions"
 echo "10.View Vulnerability File"
 echo "11.Delete Vulnerability Entry"
-echo "12.Exit"
+echo "12.Count Severity Alerts"
+echo "13.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -231,7 +270,7 @@ case $choice in
  ;;
 
 6)
- display_running_services
+ risky_running_services
  ;;
 
 7)
@@ -255,6 +294,10 @@ case $choice in
  ;;
 
 12)
+ count_severity_alerts
+ ;;
+
+13)
  echo "Goodbye!"
  exit
 
