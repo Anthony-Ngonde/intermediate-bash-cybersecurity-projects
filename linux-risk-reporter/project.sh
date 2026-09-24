@@ -1,5 +1,8 @@
 #!/usr/bin/bash
 
+vulnerability_file=vulnerability_file.txt
+current_date=$(date +"%Y-%m-%d")
+
 
 echo "=============================================="
 echo "Linux Vulnerability Assessment & Risk Reporter"
@@ -16,7 +19,11 @@ cat /etc/os-release |
 grep "PRETTY_NAME"
 
 
+echo "$current_date | Operating System Check | LOW | OPEN" >> "$vulnerability_file"
+
+
 }
+
 
 kernel_version() {
 
@@ -25,6 +32,8 @@ echo "Kernel Version"
 echo "=============="
 
 uname -r
+
+echo "$current_date | Kernel Version Check | LOW | OPEN" >> "$vulnerability_file"
 
 }
 
@@ -36,6 +45,8 @@ echo "Installed Packages and Versions"
 echo "==============================="
 
 dpkg-query -W -f='${Package} ${Version}\n'
+
+echo "$current_date | Installed Packages Versions | LOW | OPEN" >> "$vulnerability_file"
 
 
 }
@@ -49,6 +60,8 @@ echo "=========================="
 
 sudo apt full-upgrade --simulate
 
+echo "$current_date | Available Security Updates | HIGH | OPEN" >> "$vulnerability_file"
+
 
 }
 
@@ -61,8 +74,11 @@ echo "================="
 
 apt list --upgradable
 
+echo "$current_date | Outdated Packages Check | MEDIUM | OPEN" >> "$vulnerability_file"
 
 }
+
+
 
 display_running_services() {
 
@@ -71,6 +87,9 @@ echo "Display Running Services"
 echo "========================"
 
 ps aux
+
+echo "$current_date | Display Running Services | LOW | OPEN" >> "$vulnerability_file"
+
 
 }
 
@@ -83,6 +102,8 @@ echo "====================="
 
 ss -tuln
 
+echo "$current_date | Check Listening Ports | LOW | OPEN" >> "$vulnerability_file"
+
 
 }
 
@@ -94,6 +115,8 @@ echo "Check Firewall Status"
 echo "====================="
 
 sudo ufw status
+
+echo "$current_date | Check Firewall Status | HIGH | OPEN" >> "$vulnerability_file"
 
 
 }
@@ -114,6 +137,9 @@ read -p "Enter file name: " file
 permissions=$(ls -l "$file")
 
 echo "Permissions: $permissions"
+
+
+echo "$current_date | Check File Permissions | MEDIUM | OPEN" >> "$vulnerability_file"
 
 
 }
