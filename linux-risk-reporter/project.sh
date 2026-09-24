@@ -2,6 +2,7 @@
 
 vulnerability_file=vulnerability_file.txt
 current_date=$(date +"%Y-%m-%d")
+assessment_report=assessment_report.txt
 
 
 echo "=============================================="
@@ -223,6 +224,91 @@ echo "CRITICAL : $critical"
 }
 
 
+generate_assessment_report() {
+
+{
+
+
+echo "====================================="
+echo "LINUX VULNERABILITY ASSESSMENT REPORT"
+echo "====================================="
+echo
+echo "Generated: $current_date"
+
+
+echo
+echo "================="
+echo "Operating System"
+echo "================="
+
+cat /etc/os-release |
+grep "PRETTY_NAME"
+
+
+echo
+echo "==============="
+echo "Kernel Version"
+echo "=============="
+
+uname -r
+
+
+echo
+echo "==============================="
+echo "Installed Packages and Versions"
+echo "==============================="
+
+dpkg-query -W -f='${Package} ${Version}\n'
+
+echo
+echo "==========================="
+echo "Available Security Updates"
+echo "==========================="
+
+sudo apt full-upgrade --simulate
+
+
+echo
+echo "=================="
+echo "Outdated Packages"
+echo "================="
+
+apt list --upgradable
+
+
+echo
+echo "======================"
+echo "Risky Running Services"
+echo "======================"
+
+ps aux
+
+
+echo
+echo "====================="
+echo "Check Listening Ports"
+echo "====================="
+
+ss -tuln
+
+echo
+echo "====================="
+echo "Check Firewall Status"
+echo "====================="
+
+sudo ufw status
+
+
+} > "$assessment_report"
+
+echo
+echo "Report Generated Successfully in $assessment_report"
+
+
+}
+
+
+
 
 while true
 do
@@ -241,7 +327,8 @@ echo "9.Check Important File Permissions"
 echo "10.View Vulnerability File"
 echo "11.Delete Vulnerability Entry"
 echo "12.Count Severity Alerts"
-echo "13.Exit"
+echo "13.Generate Assessment Report"
+echo "14.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -298,6 +385,10 @@ case $choice in
  ;;
 
 13)
+ generate_assessment_report
+ ;;
+
+14)
  echo "Goodbye!"
  exit
 
