@@ -159,7 +159,30 @@ if [ -s "$vulnerability_file"  ]
 
 fi
 
+
 }
+
+
+delete_vulnerability_entry() {
+
+echo "=========================="
+echo "Delete Vulnerability Entry"
+echo "=========================="
+
+echo
+cat "$vulnerability_file"
+
+echo
+read -p "Enter entry to delete: " entry
+
+sed -i "/$entry/d" "$vulnerability_file"
+
+echo
+echo "Entry Deleted Successfully"
+
+
+}
+
 
 
 
@@ -178,7 +201,8 @@ echo "7.Check Listening Ports"
 echo "8.Check Firewall Status"
 echo "9.Check Important File Permissions"
 echo "10.View Vulnerability File"
-echo "11.Exit"
+echo "11.Delete Vulnerability Entry"
+echo "12.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -227,6 +251,10 @@ case $choice in
  ;;
 
 11)
+ delete_vulnerability_entry
+ ;;
+
+12)
  echo "Goodbye!"
  exit
 
