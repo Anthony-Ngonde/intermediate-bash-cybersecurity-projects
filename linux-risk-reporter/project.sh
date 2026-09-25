@@ -309,6 +309,20 @@ echo "Report Generated Successfully in $assessment_report"
 
 
 
+view_assessment_report() {
+
+if [ -s "$assessment_report"  ]
+   then
+     cat "$assessment_report"
+   else
+     echo "File not found"
+
+fi
+
+
+}
+
+
 
 while true
 do
@@ -328,7 +342,8 @@ echo "10.View Vulnerability File"
 echo "11.Delete Vulnerability Entry"
 echo "12.Count Severity Alerts"
 echo "13.Generate Assessment Report"
-echo "14.Exit"
+echo "14.View Assessment Report"
+echo "15.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -389,6 +404,10 @@ case $choice in
  ;;
 
 14)
+ view_assessment_report
+ ;;
+
+15)
  echo "Goodbye!"
  exit
 
