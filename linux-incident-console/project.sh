@@ -4,6 +4,9 @@ echo "============================================="
 echo "Linux Incident Response Investigation Console"
 echo "============================================="
 
+current_date=$(date +%H:%M)
+
+
 
 system_information() {
 
@@ -101,6 +104,17 @@ grep -i "$ioc"
 }
 
 
+record_note() {
+
+read -p "Enter investigation note: " note
+
+echo "$current_date | $note" >> investigation_notes.txt
+
+echo "Investigation note recorded"
+
+
+}
+
 
 while true
 do
@@ -115,7 +129,8 @@ echo "5.Listening Ports"
 echo "6.Active COnnections"
 echo "7.Recently Modified Files"
 echo "8.Search IOC"
-echo "9.Exit"
+echo "9.Record Investigation Note"
+echo "10.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -156,6 +171,10 @@ case $choice in
  ;;
 
 9)
+ record_note
+ ;;
+
+10)
  echo "Goodbye!"
  exit
 
