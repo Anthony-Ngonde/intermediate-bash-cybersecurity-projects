@@ -64,6 +64,16 @@ ss -tuln
 }
 
 
+active_connections() {
+
+echo "==================="
+echo "Active Cocnnections"
+echo "==================="
+
+ss -tun
+
+
+}
 
 
 while true
@@ -76,7 +86,8 @@ echo "2.Logged-in Users"
 echo "3.Failed SSH Logins"
 echo "4.Running Processes"
 echo "5.Listening Ports"
-echo "6.Exit"
+echo "6.Active COnnections"
+echo "7.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -105,6 +116,10 @@ case $choice in
  ;;
 
 6)
+ active_connections
+ ;;
+
+7)
  echo "Goodbye!"
  exit
 
