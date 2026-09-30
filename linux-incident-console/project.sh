@@ -28,6 +28,19 @@ w
 }
 
 
+failed_ssh_logins() {
+
+echo "================="
+echo "Failed SSH Logins"
+echo "================="
+
+sudo journalctl -u ssh |
+grep "Failed"
+
+}
+
+
+
 while true
 do
 
@@ -35,7 +48,8 @@ do
 echo
 echo "1.System Information"
 echo "2.Logged-in Users"
-echo "3.Exit"
+echo "3.Failed SSH Logins"
+echo "4.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -52,6 +66,10 @@ case $choice in
  ;;
 
 3)
+ failed_ssh_logins
+ ;;
+
+4)
  echo "Goodbye!"
  exit
 
