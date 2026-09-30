@@ -87,6 +87,20 @@ find /home/anthony -type f -mmin -60 2>/dev/null
 
 
 
+search_ioc() {
+
+echo "============="
+echo "Search IOC"
+echo "============"
+
+read -p "Enter IOC: " ioc
+
+sudo journalctl -u ssh |
+grep -i "$ioc"
+
+}
+
+
 
 while true
 do
@@ -100,7 +114,8 @@ echo "4.Running Processes"
 echo "5.Listening Ports"
 echo "6.Active COnnections"
 echo "7.Recently Modified Files"
-echo "8.Exit"
+echo "8.Search IOC"
+echo "9.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -137,6 +152,10 @@ case $choice in
  ;;
 
 8)
+ search_ioc
+ ;;
+
+9)
  echo "Goodbye!"
  exit
 
