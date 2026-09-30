@@ -53,6 +53,18 @@ ps aux
 }
 
 
+listening_ports() {
+
+echo "==============="
+echo "Listening Ports"
+echo "==============="
+
+ss -tuln
+
+}
+
+
+
 
 while true
 do
@@ -63,7 +75,8 @@ echo "1.System Information"
 echo "2.Logged-in Users"
 echo "3.Failed SSH Logins"
 echo "4.Running Processes"
-echo "5.Exit"
+echo "5.Listening Ports"
+echo "6.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -88,6 +101,10 @@ case $choice in
  ;;
 
 5)
+ listening_ports
+ ;;
+
+6)
  echo "Goodbye!"
  exit
 
