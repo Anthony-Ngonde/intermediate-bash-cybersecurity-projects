@@ -75,6 +75,18 @@ ss -tun
 
 }
 
+recently_modified_files() {
+
+echo "======================="
+echo "Recently Modified Files"
+echo "======================="
+
+find /home/anthony -type f -mmin -60 2>/dev/null
+
+}
+
+
+
 
 while true
 do
@@ -87,7 +99,8 @@ echo "3.Failed SSH Logins"
 echo "4.Running Processes"
 echo "5.Listening Ports"
 echo "6.Active COnnections"
-echo "7.Exit"
+echo "7.Recently Modified Files"
+echo "8.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -120,6 +133,10 @@ case $choice in
  ;;
 
 7)
+ recently_modified_files
+ ;;
+
+8)
  echo "Goodbye!"
  exit
 
