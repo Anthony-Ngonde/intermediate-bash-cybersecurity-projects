@@ -37,6 +37,19 @@ echo "================="
 sudo journalctl -u ssh |
 grep "Failed"
 
+
+}
+
+
+
+running_processes() {
+
+echo "================="
+echo "Running Processes"
+echo "================="
+
+ps aux
+
 }
 
 
@@ -49,7 +62,8 @@ echo
 echo "1.System Information"
 echo "2.Logged-in Users"
 echo "3.Failed SSH Logins"
-echo "4.Exit"
+echo "4.Running Processes"
+echo "5.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -70,6 +84,10 @@ case $choice in
  ;;
 
 4)
+ running_processes
+ ;;
+
+5)
  echo "Goodbye!"
  exit
 
