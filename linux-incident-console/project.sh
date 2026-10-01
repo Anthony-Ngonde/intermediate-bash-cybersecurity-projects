@@ -6,6 +6,7 @@ echo "============================================="
 
 current_date=$(date +%H:%M)
 incident_timeline=incident_report.txt
+investigation_notes=investigation_notes.txt
 
 
 
@@ -119,11 +120,11 @@ grep -i "$ioc"
 }
 
 
-record_note() {
+investigation_note() {
 
 read -p "Enter investigation note: " note
 
-echo "$current_date | $note" >> investigation_notes.txt
+echo "$current_date | $note" >> "$investigation_notes"
 
 echo "Investigation note recorded"
 
@@ -145,6 +146,17 @@ fi
 }
 
 
+view_investigation_note() {
+
+if [ -s "$investigation_notes"  ]
+   then
+     cat "$investigation_notes"
+   else
+     echo "No file found"
+
+fi
+
+}
 
 
 
@@ -163,7 +175,8 @@ echo "7.Recently Modified Files"
 echo "8.Search IOC"
 echo "9.Record Investigation Note"
 echo "10.View Incident Timeline"
-echo "11.Exit"
+echo "11.View Investigation Notes"
+echo "12.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -204,7 +217,7 @@ case $choice in
  ;;
 
 9)
- record_note
+ investigation_note
  ;;
 
 10)
@@ -212,6 +225,10 @@ case $choice in
  ;;
 
 11)
+ view_investigation_note
+ ;;
+
+12)
  echo "Goodbye!"
  exit
 
