@@ -1,0 +1,7 @@
+07:49 | SYSTEM | System infomation
+07:49 | AUTH | Logged-in Users
+07:49 | AUTH | Failed SSH Logins
+07:49 | PROCESS | Running Processes
+07:49 | NETWORK | Listening Ports
+07:49 | NETWORK | Active Connections
+07:49 | FILE | Recently Modified Files

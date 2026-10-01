@@ -5,6 +5,7 @@ echo "Linux Incident Response Investigation Console"
 echo "============================================="
 
 current_date=$(date +%H:%M)
+incident_timeline=incident_report.txt
 
 
 
@@ -16,6 +17,7 @@ echo "=================="
 
 uname -a
 
+echo "$current_date | SYSTEM | System infomation" >> "$incident_timeline"
 
 }
 
@@ -28,6 +30,8 @@ echo "================"
 
 w
 
+echo "$current_date | AUTH | Logged-in Users" >> "$incident_timeline"
+
 }
 
 
@@ -39,6 +43,8 @@ echo "================="
 
 sudo journalctl -u ssh |
 grep "Failed"
+
+echo "$current_date | AUTH | Failed SSH Logins" >> "$incident_timeline"
 
 
 }
@@ -53,7 +59,10 @@ echo "================="
 
 ps aux
 
+echo "$current_date | PROCESS | Running Processes" >> "$incident_timeline"
+
 }
+
 
 
 listening_ports() {
@@ -63,6 +72,8 @@ echo "Listening Ports"
 echo "==============="
 
 ss -tuln
+
+echo "$current_date | NETWORK | Listening Ports" >> "$incident_timeline"
 
 }
 
@@ -75,8 +86,10 @@ echo "==================="
 
 ss -tun
 
+echo "$current_date | NETWORK | Active Connections" >> "$incident_timeline"
 
 }
+
 
 recently_modified_files() {
 
@@ -85,6 +98,8 @@ echo "Recently Modified Files"
 echo "======================="
 
 find /home/anthony -type f -mmin -60 2>/dev/null
+
+echo "$current_date | FILE | Recently Modified Files" >> "$incident_timeline"
 
 }
 
@@ -114,6 +129,10 @@ echo "Investigation note recorded"
 
 
 }
+
+
+
+
 
 
 while true
