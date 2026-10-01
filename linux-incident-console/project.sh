@@ -131,6 +131,19 @@ echo "Investigation note recorded"
 }
 
 
+view_incident_report() {
+
+if [ -s "$incident_timeline"  ]
+   then
+     cat "$incident_timeline"
+   else
+     echo "File not found"
+
+fi
+
+
+}
+
 
 
 
@@ -149,7 +162,8 @@ echo "6.Active COnnections"
 echo "7.Recently Modified Files"
 echo "8.Search IOC"
 echo "9.Record Investigation Note"
-echo "10.Exit"
+echo "10.View Incident Timeline"
+echo "11.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -194,6 +208,10 @@ case $choice in
  ;;
 
 10)
+ view_incident_report
+ ;;
+
+11)
  echo "Goodbye!"
  exit
 
