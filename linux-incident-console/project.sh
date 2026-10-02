@@ -5,9 +5,9 @@ echo "Linux Incident Response Investigation Console"
 echo "============================================="
 
 current_date=$(date +%H:%M)
-incident_timeline=incident_report.txt
+incident_timeline=incident_timeline.txt
 investigation_notes=investigation_notes.txt
-
+security_report=security_report.txt
 
 
 system_information() {
@@ -159,6 +159,107 @@ fi
 }
 
 
+generate_incident_report() {
+
+
+{
+
+
+echo "========================="
+echo "SECURITY INCIDENT REPORT"
+echo "========================"
+echo
+echo "Generated: $(date)"
+
+echo
+echo "=================="
+echo "System Information"
+echo "=================="
+
+uname -a
+
+
+echo
+echo "================="
+echo "Logged-In Users"
+echo "================="
+
+w
+
+
+
+echo
+echo "================="
+echo "Failed SSH Logins"
+echo "================="
+
+sudo journalctl -u ssh |
+grep "Failed password"
+
+
+echo
+echo "================="
+echo "Running Processes"
+echo "================="
+
+
+ps aux
+
+
+
+
+echo
+echo "================"
+echo "Listening Ports"
+echo "================"
+
+ss -tuln
+
+
+
+echo
+echo "=================="
+echo "Active Connections"
+echo "=================="
+
+ss -tun
+
+
+
+echo
+echo "======================="
+echo "Recently Modified Files"
+echo "======================="
+
+find /home/anthony -type f -mmin -60 2>/dev/null
+
+
+
+if [ -s "$incident_timeline" ]
+  then
+    echo
+    echo
+    cat "$incident_timeline"
+  else
+    echo
+    echo
+    echo "File not found"
+
+fi
+
+
+
+
+} > "$security_report"
+
+echo
+echo "Report generated successfully in $security_report"
+
+
+}
+
+
+
 
 while true
 do
@@ -176,7 +277,8 @@ echo "8.Search IOC"
 echo "9.Record Investigation Note"
 echo "10.View Incident Timeline"
 echo "11.View Investigation Notes"
-echo "12.Exit"
+echo "12.Generate Incident Report"
+echo "13.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -229,6 +331,10 @@ case $choice in
  ;;
 
 12)
+ generate_incident_report
+ ;;
+
+13)
  echo "Goodbye!"
  exit
 

@@ -1,0 +1,237 @@
+=========================
+SECURITY INCIDENT REPORT
+========================
+
+Generated: Fri Oct  2 08:23:00 AM EDT 2026
+
+==================
+System Information
+==================
+Linux kali 6.16.8+kali-amd64 #1 SMP PREEMPT_DYNAMIC Kali 6.16.8-1kali1 (2025-09-24) x86_64 GNU/Linux
+
+=================
+Logged-In Users
+=================
+ 08:23:00 up 2 days,  7:26,  1 user,  load average: 0.18, 0.18, 0.15
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU  WHAT
+anthony           -                21Sep26         0.00s  0.02s lightdm --session-child 13 24
+
+=================
+Failed SSH Logins
+=================
+Aug 20 04:05:00 kali sshd-session[1203102]: Failed password for anthony from ::1 port 48698 ssh2
+Aug 20 04:05:07 kali sshd-session[1203102]: Failed password for anthony from ::1 port 48698 ssh2
+Aug 24 05:20:12 kali sshd-session[1526363]: Failed password for anthony from ::1 port 54540 ssh2
+Aug 24 05:20:21 kali sshd-session[1526363]: Failed password for anthony from ::1 port 54540 ssh2
+Aug 24 05:20:26 kali sshd-session[1526363]: Failed password for anthony from ::1 port 54540 ssh2
+
+=================
+Running Processes
+=================
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.3  24808 15392 ?        Ss   Sep30   0:08 /sbin/init splash
+root           2  0.0  0.0      0     0 ?        S    Sep30   0:00 [kthreadd]
+root           3  0.0  0.0      0     0 ?        S    Sep30   0:00 [pool_workqueue_release]
+root           4  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-rcu_gp]
+root           5  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-sync_wq]
+root           6  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-kvfree_rcu_reclaim]
+root           7  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-slub_flushwq]
+root           8  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-netns]
+root          10  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/0:0H-events_highpri]
+root          12  0.0  0.0      0     0 ?        I    Sep30   0:00 [kworker/u8:0-ipv6_addrconf]
+root          13  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-mm_percpu_wq]
+root          14  0.0  0.0      0     0 ?        S    Sep30   0:23 [ksoftirqd/0]
+root          15  0.0  0.0      0     0 ?        I    Sep30   1:31 [rcu_preempt]
+root          16  0.0  0.0      0     0 ?        S    Sep30   0:00 [rcu_exp_par_gp_kthread_worker/0]
+root          17  0.0  0.0      0     0 ?        S    Sep30   0:00 [rcu_exp_gp_kthread_worker]
+root          18  0.0  0.0      0     0 ?        S    Sep30   0:15 [migration/0]
+root          19  0.0  0.0      0     0 ?        S    Sep30   0:00 [idle_inject/0]
+root          20  0.0  0.0      0     0 ?        S    Sep30   0:00 [cpuhp/0]
+root          21  0.0  0.0      0     0 ?        S    Sep30   0:00 [cpuhp/1]
+root          22  0.0  0.0      0     0 ?        S    Sep30   0:00 [idle_inject/1]
+root          23  0.0  0.0      0     0 ?        S    Sep30   0:04 [migration/1]
+root          24  0.0  0.0      0     0 ?        S    Sep30   0:34 [ksoftirqd/1]
+root          31  0.0  0.0      0     0 ?        S    Sep30   0:00 [kdevtmpfs]
+root          32  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-inet_frag_wq]
+root          33  0.0  0.0      0     0 ?        I    Sep30   0:00 [rcu_tasks_kthread]
+root          34  0.0  0.0      0     0 ?        I    Sep30   0:00 [rcu_tasks_rude_kthread]
+root          35  0.0  0.0      0     0 ?        I    Sep30   0:00 [rcu_tasks_trace_kthread]
+root          36  0.0  0.0      0     0 ?        S    Sep30   0:00 [kauditd]
+root          37  0.0  0.0      0     0 ?        S    Sep30   0:00 [khungtaskd]
+root          38  0.0  0.0      0     0 ?        S    Sep30   0:00 [oom_reaper]
+root          40  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-writeback]
+root          41  0.0  0.0      0     0 ?        S    Sep30   0:24 [kcompactd0]
+root          42  0.0  0.0      0     0 ?        SN   Sep30   0:00 [ksmd]
+root          43  0.0  0.0      0     0 ?        SN   Sep30   0:18 [khugepaged]
+root          44  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-kblockd]
+root          45  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-blkcg_punt_bio]
+root          46  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-kintegrityd]
+root          47  0.0  0.0      0     0 ?        S    Sep30   0:00 [irq/9-acpi]
+root          49  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-tpm_dev_wq]
+root          50  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-edac-poller]
+root          51  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-devfreq_wq]
+root          54  0.0  0.0      0     0 ?        S    Sep30   0:00 [kswapd0]
+root          62  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-kthrotld]
+root          64  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-acpi_thermal_pm]
+root          65  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-mld]
+root          66  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-ipv6_addrconf]
+root          68  0.0  0.0      0     0 ?        I    Sep30   0:00 [kworker/u8:1-ipv6_addrconf]
+root          72  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-kstrp]
+root          78  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/u11:0]
+root          79  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/u12:0-ttm]
+root          80  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/u13:0-ttm]
+root         185  0.0  0.0      0     0 ?        I<   Sep30   0:04 [kworker/0:1H-kblockd]
+root         226  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-ata_sff]
+root         234  0.0  0.0      0     0 ?        S    Sep30   0:00 [scsi_eh_0]
+root         236  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-scsi_tmf_0]
+root         237  0.0  0.0      0     0 ?        S    Sep30   0:00 [scsi_eh_1]
+root         238  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-scsi_tmf_1]
+root         240  0.0  0.0      0     0 ?        S    Sep30   0:00 [scsi_eh_2]
+root         241  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-scsi_tmf_2]
+root         244  0.0  0.0      0     0 ?        S    Sep30   0:00 [irq/18-vmwgfx]
+root         245  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-ttm]
+root         293  0.0  0.0      0     0 ?        S    Sep30   0:05 [jbd2/sda1-8]
+root         294  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-ext4-rsv-conversion]
+root         356  0.0  0.4  50396 19236 ?        Ss   Sep30   0:07 /usr/lib/systemd/systemd-journald
+root         391  0.0  0.3  37328 12044 ?        Ss   Sep30   0:02 /usr/lib/systemd/systemd-udevd
+root         395  0.0  0.0      0     0 ?        S    Sep30   0:00 [psimon]
+root         487  0.0  0.1   8392  6612 ?        Ss   Sep30   0:14 /usr/sbin/haveged --Foreground --verbose=1
+root         489  0.0  0.1 309052  7332 ?        Ssl  Sep30   0:00 /usr/libexec/accounts-daemon
+message+     492  0.0  0.1   9944  6488 ?        Ss   Sep30   3:16 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+polkitd      496  0.0  0.2 382516 10036 ?        Ssl  Sep30   0:09 /usr/lib/polkit-1/polkitd --no-debug --log-level=notice
+root         536  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-rpciod]
+root         539  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/R-xprtiod]
+root         547  0.0  0.0   6880  2888 ?        Ss   Sep30   0:01 /usr/sbin/cron -f
+root         548  0.0  0.3 391012 12628 ?        Ssl  Sep30   0:00 /usr/sbin/ModemManager
+root         568  0.1  0.0 352940  2612 ?        Sl   Sep30   5:44 /usr/bin/VBoxDRMClient
+root         571  0.0  0.0 357280  3416 ?        Sl   Sep30   2:06 /usr/sbin/VBoxService
+root         620  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/u12:1]
+root         633  0.0  0.4 336556 19052 ?        Ssl  Sep30   0:02 /usr/sbin/NetworkManager --no-daemon
+root         725  0.0  0.1 380968  7408 ?        SLsl Sep30   0:00 /usr/sbin/lightdm
+root         729  0.0  0.1  11784  7828 ?        Ss   Sep30   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+root         739  0.0  0.0      0     0 ?        I<   Sep30   0:00 [kworker/u13:1-ttm]
+root         741  2.0  3.5 429816 143128 tty7    Ssl+ Sep30  66:36 /usr/lib/xorg/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+root         742  0.0  0.0   8152  2812 tty1     Ss+  Sep30   0:00 /usr/sbin/agetty --noreset --noclear --issue-file=/etc/issue:/etc/issue.d:/run/issue.d:/usr/lib/issue.d - linux
+root         760  0.0  0.0      0     0 ?        S    Sep30   0:00 [psimon]
+rtkit        790  0.0  0.0  87056  3248 ?        SNsl Sep30   0:08 /usr/libexec/rtkit-daemon
+root         861  0.0  0.2 170800  8740 ?        Sl   Sep30   0:00 lightdm --session-child 13 24
+anthony      886  0.0  0.3  22972 13508 ?        Ss   Sep30   0:01 /usr/lib/systemd/systemd --user
+anthony      888  0.0  0.0  22620  3980 ?        S    Sep30   0:00 (sd-pam)
+anthony      910  0.0  0.1   9080  5940 ?        Ss   Sep30   0:04 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+anthony      912  0.0  0.3 102148 12056 ?        Ssl  Sep30   0:00 /usr/bin/pipewire
+anthony      914  0.0  0.2 183192 10404 ?        SLsl Sep30   0:00 /usr/bin/gnome-keyring-daemon --foreground --components=pkcs11,secrets --control-directory=/run/user/1000/keyring
+anthony      915  0.0  0.0   7240  3648 ?        Ss   Sep30   0:00 /usr/bin/mpris-proxy
+anthony      916  0.0  0.4 480568 18244 ?        Ssl  Sep30   0:00 /usr/bin/wireplumber
+anthony      917  0.0  0.1  84732  5404 ?        Ssl  Sep30   0:00 /usr/bin/pipewire -c filter-chain.conf
+anthony      918  0.0  0.2  99380  9144 ?        Ssl  Sep30   0:00 /usr/bin/pipewire-pulse
+anthony      931  0.0  0.9 422240 36708 ?        Ssl  Sep30   1:00 xfce4-session
+anthony     1002  0.0  0.0  16728  1812 ?        S    Sep30   0:00 /usr/bin/VBoxClient --clipboard
+anthony     1004  0.0  0.1 215612  4564 ?        Sl   Sep30   0:03 /usr/bin/VBoxClient --clipboard
+anthony     1011  0.0  0.0  16728  1872 ?        S    Sep30   0:00 /usr/bin/VBoxClient --seamless
+anthony     1012  0.1  0.0 214884  3468 ?        Sl   Sep30   4:08 /usr/bin/VBoxClient --seamless
+anthony     1018  0.0  0.0  16728  1872 ?        S    Sep30   0:00 /usr/bin/VBoxClient --draganddrop
+anthony     1020  0.7  0.0 215400  3428 ?        Sl   Sep30  25:16 /usr/bin/VBoxClient --draganddrop
+anthony     1030  0.0  0.0  16728  1708 ?        S    Sep30   0:00 /usr/bin/VBoxClient --vmsvga-session
+anthony     1032  0.0  0.0 215072  3576 ?        Sl   Sep30   2:16 /usr/bin/VBoxClient --vmsvga-session
+anthony     1053  0.0  0.1 381196  7760 ?        Ssl  Sep30   0:00 /usr/libexec/at-spi-bus-launcher
+anthony     1060  0.0  0.1   8524  5220 ?        S    Sep30   0:12 /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 12 --address=unix:path=/run/user/1000/at-spi/bus_0
+anthony     1070  0.0  0.1 168808  7732 ?        Sl   Sep30   1:00 /usr/libexec/at-spi2-registryd --use-gnome-session
+anthony     1078  0.0  0.0  10692  3568 ?        Ss   Sep30   0:00 /usr/bin/ssh-agent -s
+anthony     1087  0.0  0.0  89956  3792 ?        SLsl Sep30   0:09 /usr/bin/gpg-agent --supervised
+anthony     1090  1.0  3.2 561184 131648 ?       Sl   Sep30  36:00 xfwm4
+anthony     1095  0.0  0.2 312872  8292 ?        Ssl  Sep30   0:00 /usr/libexec/gvfsd
+anthony     1101  0.0  0.1 398432  7468 ?        Sl   Sep30   0:00 /usr/libexec/gvfsd-fuse /run/user/1000/gvfs -f
+anthony     1115  0.0  0.6 348368 27380 ?        Sl   Sep30   1:13 xfsettingsd
+anthony     1121  0.0  0.1 165300  6092 ?        Ssl  Sep30   0:00 /usr/libexec/dconf-service
+anthony     1125  0.0  1.4 522304 58936 ?        Sl   Sep30   1:12 xfce4-panel
+anthony     1131  0.0  0.6 485800 26588 ?        Sl   Sep30   0:07 Thunar --daemon
+anthony     1138  0.0  1.6 484596 66984 ?        Sl   Sep30   1:03 xfdesktop
+anthony     1140  0.0  1.0 428300 42424 ?        Sl   Sep30   0:21 /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/panel/plugins/libwhiskermenu.so 1 25165831 whiskermenu Whisker Menu Show a menu to easily access installed applications
+anthony     1148  0.4  1.2 296932 51828 ?        Sl   Sep30  16:25 /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/panel/plugins/libcpugraph.so 13 25165836 cpugraph CPU Graph Graphical representation of the CPU load
+anthony     1149  0.0  0.6 420372 27432 ?        Sl   Sep30   0:09 /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/panel/plugins/libsystray.so 14 25165837 systray Status Tray Plugin Provides status notifier items (application indicators) and legacy systray items
+anthony     1150  0.3  0.7 272812 28924 ?        Sl   Sep30  12:04 /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/panel/plugins/libgenmon.so 15 25165838 genmon Generic Monitor Show output of a command.
+anthony     1151  0.0  0.9 359508 40124 ?        Sl   Sep30   0:09 /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/panel/plugins/libpulseaudio-plugin.so 16 25165839 pulseaudio PulseAudio Plugin Adjust the audio volume of the PulseAudio sound system
+anthony     1153  0.0  0.9 425212 37600 ?        Sl   Sep30   0:08 /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/panel/plugins/libnotification-plugin.so 17 25165840 notification-plugin Notification Plugin Notification plugin for the Xfce panel
+anthony     1154  0.0  0.9 286084 38580 ?        Sl   Sep30   2:39 /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/panel/plugins/libxfce4powermanager.so 18 25165841 power-manager-plugin Power Manager Plugin Display the battery levels of your devices and control the brightness of your display
+anthony     1163  0.0  0.9 425492 37960 ?        Sl   Sep30   0:08 /usr/lib/x86_64-linux-gnu/xfce4/panel/wrapper-2.0 /usr/lib/x86_64-linux-gnu/xfce4/panel/plugins/libactions.so 22 25165842 actions Action Buttons Log out, lock or other system actions
+root        1188  0.1  0.2 319636 11292 ?        Ssl  Sep30   4:12 /usr/libexec/upowerd
+anthony     1195  0.0  1.0 436732 41712 ?        Ssl  Sep30   0:57 /usr/lib/x86_64-linux-gnu/xfce4/notifyd/xfce4-notifyd
+anthony     1213  0.0  0.1 308644  6784 ?        Sl   Sep30   0:00 /usr/libexec/geoclue-2.0/demos/agent
+anthony     1214  0.0  1.0  68520 43244 ?        S    Sep30   0:01 /usr/bin/python3 /usr/share/system-config-printer/applet.py
+anthony     1221  0.0  1.0 586992 43688 ?        Sl   Sep30   0:09 nm-applet
+anthony     1229  0.0  0.6 410820 25892 ?        Sl   Sep30   0:30 xfce4-power-manager
+anthony     1232  0.0  1.4 605128 59560 ?        Sl   Sep30   0:13 /usr/bin/python3 /usr/bin/blueman-applet
+anthony     1238  0.0  0.0  12436  2212 ?        Ssl  Sep30   0:38 xcape -e Super_L Control_L Escape
+anthony     1240  0.0  0.2 398472  9192 ?        Sl   Sep30   0:00 xiccd
+anthony     1242  0.0  0.9 281556 37368 ?        Sl   Sep30   1:11 xfce4-screensaver
+anthony     1243  0.0  0.4 266060 18904 ?        Sl   Sep30   0:08 /usr/libexec/polkit-mate-authentication-agent-1
+colord      1267  0.0  0.3 317068 15364 ?        Ssl  Sep30   0:00 /usr/libexec/colord
+anthony     1454  0.0  0.2 390916 11320 ?        Ssl  Sep30   0:00 /usr/libexec/gvfs-udisks2-volume-monitor
+root        1459  0.0  0.3 543944 14200 ?        Ssl  Sep30   0:08 /usr/libexec/udisks2/udisksd
+anthony     1472  0.0  0.4 557000 19940 ?        Ssl  Sep30   0:01 /usr/libexec/xdg-desktop-portal
+anthony     1481  0.0  0.1 308768  6664 ?        Ssl  Sep30   0:00 /usr/libexec/xdg-permission-store
+anthony     1484  0.0  0.1 307892  6856 ?        Ssl  Sep30   0:00 /usr/libexec/gvfs-goa-volume-monitor
+anthony     1490  0.0  0.1 688240  7328 ?        Ssl  Sep30   0:00 /usr/libexec/xdg-document-portal
+anthony     1503  0.0  0.1 308912  7416 ?        Ssl  Sep30   0:00 /usr/libexec/gvfs-gphoto2-volume-monitor
+root        1509  0.0  0.0   2596  2016 ?        Ss   Sep30   0:00 fusermount3 -o rw,nosuid,nodev,fsname=portal,auto_unmount,subtype=portal -- /run/user/1000/doc
+anthony     1514  0.0  0.5 480308 20416 ?        Ssl  Sep30   0:11 /usr/libexec/xdg-desktop-portal-gtk
+anthony     1530  0.0  0.1 307944  6912 ?        Ssl  Sep30   0:00 /usr/libexec/gvfs-mtp-volume-monitor
+anthony     1538  0.0  0.2 389980  8816 ?        Ssl  Sep30   0:32 /usr/libexec/gvfs-afc-volume-monitor
+anthony     1557  0.0  0.1 168892  6812 ?        Ssl  Sep30   0:00 /usr/libexec/gvfsd-metadata
+anthony     1563  0.0  0.2 534284  9164 ?        Sl   Sep30   0:00 /usr/libexec/gvfsd-trash --spawner :1.24 /org/gtk/gvfs/exec_spaw/0
+anthony     1585  0.0  0.4 378832 18852 ?        Ssl  Sep30   0:00 /usr/libexec/bluetooth/obexd
+anthony    27637  0.2  1.6 654792 66540 ?        Sl   Sep30   6:50 /usr/bin/qterminal
+anthony    27644  0.0  0.2  15352  9152 pts/1    Ss   Sep30   1:08 /usr/bin/zsh
+root      148430  0.0  0.2  18240  9220 ?        Ss   Sep30   0:31 /usr/lib/systemd/systemd-logind
+anthony   945295  0.0  1.6 654564 65840 ?        Sl   Oct01   1:08 /usr/bin/qterminal
+anthony   945310  0.0  0.1  10568  6732 pts/0    Ss   Oct01   0:05 /usr/bin/zsh
+anthony  1295220  0.5  1.6 654680 65184 ?        Sl   Oct01   3:14 /usr/bin/qterminal
+anthony  1295227  0.0  0.1  10848  7032 pts/2    Ss+  Oct01   0:22 /usr/bin/zsh
+root     1344715  0.0  0.0      0     0 ?        I    Oct01   0:01 [kworker/u9:2-events_unbound]
+root     1417065  0.0  0.0      0     0 ?        I    01:46   0:01 [kworker/u10:1-flush-8:0]
+anthony  1435645  0.0  0.1   7244  4400 pts/0    S+   02:24   0:00 nano project.sh
+root     1491984  0.0  0.0      0     0 ?        I    04:18   0:00 [kworker/u10:0-events_unbound]
+root     1505051  0.0  0.0      0     0 ?        I<   04:45   0:01 [kworker/1:2H-kblockd]
+root     1521761  0.0  0.0      0     0 ?        I    05:19   0:00 [kworker/u10:3-kvfree_rcu_reclaim]
+root     1522357  0.0  0.0      0     0 ?        I    05:21   0:00 [kworker/u9:1-events_unbound]
+root     1543781  0.0  0.0      0     0 ?        I<   06:05   0:00 [kworker/1:1H]
+root     1602931  0.1  0.0      0     0 ?        I    08:07   0:01 [kworker/1:1-events]
+root     1603524  0.0  0.0      0     0 ?        I    08:08   0:00 [kworker/u9:0-events_unbound]
+root     1603613  0.0  0.0      0     0 ?        I    08:08   0:00 [kworker/0:1-events]
+root     1606465  0.0  0.0      0     0 ?        I    08:14   0:00 [kworker/0:2-events]
+root     1607964  0.1  0.0      0     0 ?        I    08:17   0:00 [kworker/1:0-ata_sff]
+root     1610372  0.0  0.0      0     0 ?        I    08:22   0:00 [kworker/0:0]
+root     1610584  0.0  0.0      0     0 ?        I    08:22   0:00 [kworker/1:2]
+anthony  1610587  0.4  0.0   7316  3600 pts/1    S+   08:22   0:00 /usr/bin/bash ./project.sh
+anthony  1610621  0.0  0.1   9540  4356 pts/1    R+   08:22   0:00 ps aux
+
+================
+Listening Ports
+================
+Netid State  Recv-Q Send-Q Local Address:Port Peer Address:Port
+tcp   LISTEN 0      128          0.0.0.0:22        0.0.0.0:*   
+tcp   LISTEN 0      128             [::]:22           [::]:*   
+
+==================
+Active Connections
+==================
+Netid State Recv-Q Send-Q  Local Address:Port Peer Address:Port
+udp   ESTAB 0      0      10.0.2.15%eth0:68       10.0.2.2:67  
+
+=======================
+Recently Modified Files
+=======================
+/home/anthony/bash/intermediate-bash-cybersecurity-projects/linux-incident-console/project.sh
+/home/anthony/bash/intermediate-bash-cybersecurity-projects/linux-incident-console/security_report.txt
+/home/anthony/bash/intermediate-bash-cybersecurity-projects/linux-incident-console/incident_timeline.txt
+/home/anthony/python/cybersecurity-asset-manager/project.py
+/home/anthony/python/cybersecurity-asset-manager/cyber_assets.json
+
+
+07:49 | SYSTEM | System infomation
+07:49 | AUTH | Logged-in Users
+07:49 | AUTH | Failed SSH Logins
+07:49 | PROCESS | Running Processes
+07:49 | NETWORK | Listening Ports
+07:49 | NETWORK | Active Connections
+07:49 | FILE | Recently Modified Files
