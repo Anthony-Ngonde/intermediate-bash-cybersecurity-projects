@@ -260,6 +260,21 @@ echo "Report generated successfully in $security_report"
 
 
 
+view_incident_report() {
+
+if [ -s "$security_report"  ]
+   then
+     cat "$security_report"
+   else
+     echo "File not found"
+
+fi
+
+}
+
+
+
+
 
 while true
 do
@@ -278,7 +293,8 @@ echo "9.Record Investigation Note"
 echo "10.View Incident Timeline"
 echo "11.View Investigation Notes"
 echo "12.Generate Incident Report"
-echo "13.Exit"
+echo "13.View Incident Report"
+echo "14.Exit"
 
 echo
 read -p "Enter your choice: " choice
@@ -335,6 +351,11 @@ case $choice in
  ;;
 
 13)
+ view_incident_report
+ ;;
+
+
+14)
  echo "Goodbye!"
  exit
 
