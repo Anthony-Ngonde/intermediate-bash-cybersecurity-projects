@@ -65,6 +65,22 @@ cat /etc/group
 }
 
 
+privileged_groups_members() {
+
+echo "========================="
+echo "Privileged Groups Members"
+echo "========================="
+
+
+grep -E '^(sudo|wheel|adm|docker):' /etc/group
+
+
+}
+
+
+
+
+
 
 while true
 do
@@ -76,7 +92,8 @@ echo "2.Identify Users with Login Shells"
 echo "3.Display UID/GID"
 echo "4.Identify UID 0 Accounts"
 echo "5.Display Groups"
-echo "6.Exit"
+echo "6.Find Members of Privileged Groups"
+echo "7.Exit"
 
 
 echo
@@ -106,6 +123,10 @@ case $choice in
  ;;
 
 6)
+ privileged_groups_members
+ ;;
+
+7)
  echo "Goodbye!"
  exit
 
