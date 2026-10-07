@@ -53,6 +53,18 @@ awk -F: '$3 == 0 {print $1}' /etc/passwd
 
 
 
+display_groups() {
+
+echo "=============="
+echo "Display Groups"
+echo "=============="
+
+cat /etc/group
+
+
+}
+
+
 
 while true
 do
@@ -63,7 +75,8 @@ echo "1.List All Users"
 echo "2.Identify Users with Login Shells"
 echo "3.Display UID/GID"
 echo "4.Identify UID 0 Accounts"
-echo "5.Exit"
+echo "5.Display Groups"
+echo "6.Exit"
 
 
 echo
@@ -89,6 +102,10 @@ case $choice in
  ;;
 
 5)
+ display_groups
+ ;;
+
+6)
  echo "Goodbye!"
  exit
 
