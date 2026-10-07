@@ -18,4 +18,19 @@ cat /etc/passwd
 }
 
 
-list_all_users
+users_with_login_shells() {
+
+echo "======================="
+echo "Users with Login Shells"
+echo "======================="
+
+awk -F: '$7 !~ /(nologin|false)$/ {print $1}' /etc/passwd
+
+}
+
+
+#list_all_users
+users_with_login_shells
+
+
+
