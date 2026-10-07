@@ -41,6 +41,17 @@ awk -F: '{print "UID:", $3, "GID:", $4}' /etc/passwd
 }
 
 
+uid_0_accounts() {
+
+echo "=============="
+echo "UID 0 Accounts"
+echo "=============="
+
+awk -F: '$3 == 0 {print $1}' /etc/passwd
+
+}
+
+
 
 
 while true
@@ -51,7 +62,8 @@ echo
 echo "1.List All Users"
 echo "2.Identify Users with Login Shells"
 echo "3.Display UID/GID"
-echo "4.Exit"
+echo "4.Identify UID 0 Accounts"
+echo "5.Exit"
 
 
 echo
@@ -73,6 +85,10 @@ case $choice in
  ;;
 
 4)
+ uid_0_accounts
+ ;;
+
+5)
  echo "Goodbye!"
  exit
 
