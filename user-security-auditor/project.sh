@@ -79,6 +79,17 @@ grep -E '^(sudo|wheel|adm|docker):' /etc/group
 
 
 
+inspect_sudo_access() {
+
+echo "==================="
+echo "Inspect Sudo Access"
+echo "==================="
+
+sudo -l
+
+
+}
+
 
 
 
@@ -93,7 +104,8 @@ echo "3.Display UID/GID"
 echo "4.Identify UID 0 Accounts"
 echo "5.Display Groups"
 echo "6.Find Members of Privileged Groups"
-echo "7.Exit"
+echo "7.Inspect Sudo Access"
+echo "8.Exit"
 
 
 echo
@@ -127,6 +139,10 @@ case $choice in
  ;;
 
 7)
+ inspect_sudo_access
+ ;;
+
+8)
  echo "Goodbye!"
  exit
 
