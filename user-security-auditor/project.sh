@@ -29,6 +29,20 @@ awk -F: '$7 !~ /(nologin|false)$/ {print $1}' /etc/passwd
 }
 
 
+display_uid_gid() {
+
+echo "==============="
+echo "Display UID/GID"
+echo "==============="
+
+awk -F: '{print "UID:", $3, "GID:", $4}' /etc/passwd
+
+
+}
+
+
+
+
 while true
 do
 
@@ -36,7 +50,8 @@ do
 echo
 echo "1.List All Users"
 echo "2.Identify Users with Login Shells"
-echo "3.Exit"
+echo "3.Display UID/GID"
+echo "4.Exit"
 
 
 echo
@@ -54,6 +69,10 @@ case $choice in
  ;;
 
 3)
+ display_uid_gid
+ ;;
+
+4)
  echo "Goodbye!"
  exit
 
