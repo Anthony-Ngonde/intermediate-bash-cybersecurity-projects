@@ -92,6 +92,18 @@ sudo -l
 
 
 
+find_suid_files() {
+
+echo "==============="
+echo "Find SUID Files"
+echo "==============="
+
+find / -type f -perm -4000 -ls 2>/dev/null
+
+
+}
+
+
 
 while true
 do
@@ -105,7 +117,8 @@ echo "4.Identify UID 0 Accounts"
 echo "5.Display Groups"
 echo "6.Find Members of Privileged Groups"
 echo "7.Inspect Sudo Access"
-echo "8.Exit"
+echo "8.Find SUID Files"
+echo "9.Exit"
 
 
 echo
@@ -143,6 +156,10 @@ case $choice in
  ;;
 
 8)
+ find_suid_files
+ ;;
+
+9)
  echo "Goodbye!"
  exit
 
