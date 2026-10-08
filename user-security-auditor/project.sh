@@ -142,6 +142,16 @@ ls -l /etc/passwd /etc/shadow /etc/group /etc/sudoers
 }
 
 
+recently_created_accounts() {
+
+echo "========================="
+echo "Recently Created Accounts"
+echo "========================="
+
+sudo journalctl | grep -iE 'useradd|new user'
+
+
+}
 
 
 
@@ -162,7 +172,8 @@ echo "8.Find SUID Files"
 echo "9.Find SGID Files"
 echo "10.Find world-writable Files"
 echo "11.Check Sensitive File Permissions"
-echo "12.Exit"
+echo "12.Detect Recently Created Accounts"
+echo "13.Exit"
 
 
 echo
@@ -216,6 +227,10 @@ case $choice in
  ;;
 
 12)
+ recently_created_accounts
+ ;;
+
+13)
  echo "Goodbye!"
  exit
 
