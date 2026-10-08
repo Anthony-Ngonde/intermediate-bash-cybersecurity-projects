@@ -105,6 +105,21 @@ find / -type f -perm -4000 -ls 2>/dev/null
 
 
 
+find_sgid_files() {
+
+echo "==============="
+echo "Find SGID Files"
+echo "==============="
+
+find / -type f -perm -2000 -ls 2>/dev/null
+
+
+}
+
+
+
+
+
 while true
 do
 
@@ -118,7 +133,8 @@ echo "5.Display Groups"
 echo "6.Find Members of Privileged Groups"
 echo "7.Inspect Sudo Access"
 echo "8.Find SUID Files"
-echo "9.Exit"
+echo "9.Find SGID Files"
+echo "10.Exit"
 
 
 echo
@@ -160,6 +176,10 @@ case $choice in
  ;;
 
 9)
+ find_sgid_files
+ ;;
+
+10)
  echo "Goodbye!"
  exit
 
