@@ -130,6 +130,20 @@ find / -type f -perm -002 -ls 2>/dev/null
 }
 
 
+sensitive_file_permission() {
+
+echo "========================="
+echo "Sensitive File Permission"
+echo "========================="
+
+ls -l /etc/passwd /etc/shadow /etc/group /etc/sudoers
+
+
+}
+
+
+
+
 
 
 while true
@@ -147,7 +161,8 @@ echo "7.Inspect Sudo Access"
 echo "8.Find SUID Files"
 echo "9.Find SGID Files"
 echo "10.Find world-writable Files"
-echo "11.Exit"
+echo "11.Check Sensitive File Permissions"
+echo "12.Exit"
 
 
 echo
@@ -197,6 +212,10 @@ case $choice in
  ;;
 
 11)
+ sensitive_file_permission
+ ;;
+
+12)
  echo "Goodbye!"
  exit
 
