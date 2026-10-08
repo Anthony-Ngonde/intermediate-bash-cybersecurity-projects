@@ -118,6 +118,18 @@ find / -type f -perm -2000 -ls 2>/dev/null
 
 
 
+world_writables_files() {
+
+echo "===================="
+echo "World Writable Files"
+echo "===================="
+
+find / -type f -perm -002 -ls 2>/dev/null
+
+
+}
+
+
 
 
 while true
@@ -134,7 +146,8 @@ echo "6.Find Members of Privileged Groups"
 echo "7.Inspect Sudo Access"
 echo "8.Find SUID Files"
 echo "9.Find SGID Files"
-echo "10.Exit"
+echo "10.Find world-writable Files"
+echo "11.Exit"
 
 
 echo
@@ -180,6 +193,10 @@ case $choice in
  ;;
 
 10)
+ world_writables_files
+ ;;
+
+11)
  echo "Goodbye!"
  exit
 
